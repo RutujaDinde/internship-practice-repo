@@ -1,4 +1,4 @@
-# Virtual Internship Portfolio
+# Virtual Internship 
 
 ## 👤 Profile
 * **Name:** [Rutuja Amar Dinde]
@@ -27,3 +27,5 @@
 * **LinkedIn:** [Rutuja Dinde](https://www.linkedin.com/in/rutuja-dinde-9ab71226b?utm_source=share_via&utm_content=profile&utm_medium=member_android)
 * **GitHub Profile:** [@RutujaDinde](https://github.com)
 * **Email:** `dinderutuja26@gmail.com`
+
+
