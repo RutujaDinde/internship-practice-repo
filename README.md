@@ -1,7 +1,9 @@
-# Virtual Internship 
+# Virtual Internship at TechnoSignia
+
 
 ## 👤 Profile
-* **Name:** [Rutuja Amar Dinde]
+
+* **Name:** Rutuja Amar Dinde
 * **Domain:** Python full stack  Development
 * **Career Goal:** Aspiring Backend Developer dedicated to building secure, modular, and highly scalable web applications using the Python-Django ecosystem.
 
