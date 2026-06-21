@@ -30,45 +30,37 @@ Python offers several frameworks for different domains.
 * Tornado
 
 ### 📊Data Science and Machine Learning 
-* NumPy
-* Pandas
+* NumPy & Pandas
 * Scikit-learn
-* TensorFlow
-* PyTorch
+* TensorFlow& PyTorch
 * Keras
 
 ### API Development
 * FastAPI
 * Flask RESTful
 * Django REST Framework
+---
 
-## 3.📍 Where Is Python Used?
+## 3. 📍 Where Is Python Used?
 
 Python is widely used across industries and domains.
 
 
- 🌐Web Development(websites and APIs): 
-Building websites and web applications, Backend API development, E-commerce platforms,
+* 🌐Web Development(websites and APIs) : Building websites and web applications, Backend API development, E-commerce platforms,
 
-### 📊 Data science and analytics:
-Predictive analytics, Deep learning, Natural language processing, Computer vision
+* 📊 Data science and analytics : Predictive analytics, Deep learning, Natural language processing, Computer vision
 
-### 🤖 Artificial intelligence and machine learning:
-Predictive analytics, Deep learning,Natural language processing, Computer vision
+* 🤖 Artificial intelligence and machine learning : Predictive analytics, Deep learning,Natural language processing, Computer vision
 
-### 🔐 Cybersecurity tools:
-Security testing,Vulnerability assessment, Ethical hacking tools
+* 🔐 Cybersecurity tools : Security testing,Vulnerability assessment, Ethical hacking tools
 
-### ⚙️ Automation scripts:
-Task automation, Script development, Process optimization
+* ⚙️ Automation scripts : Task automation, Script development, Process optimization
 
-### 🎮 Game development: 
-Game scripting,Prototyping
+* 🎮 Game development : Game scripting,Prototyping
 
-### Cloud Computing:
-Cloud automation, Serverless applications,Infrastructure management
+*  Cloud Computing: Cloud automation, Serverless applications,Infrastructure management
 
-## 🛠️4. Required Skillset
+## 🛠️ 4. Required Skillset
 
 ### Web Development Skills
 * Python Mastery(OOP & Asynchrony)
@@ -96,7 +88,7 @@ Cloud automation, Serverless applications,Infrastructure management
 * AWS
 * Azure
 * CI/CD Pipelines
-
+---
 ## 💼5. Career Opportunities
 
 Python professionals are in high demand across industries.
@@ -116,14 +108,13 @@ Python professionals are in high demand across industries.
 * Research Engineer
 --
 ## 🔮6. Future Scope of Python
-
 Python continues to be one of the most in-demand programming languages globally.
 
-•  AI and machine learning are growing rapidly 
-•  Web development demand is increasing 
-•  Automation is replacing manual tasks 
-•  Data science is used in every industry 
-•  Cloud computing relies heavily on Python scripts
+*  AI and machine learning are growing rapidly 
+*  Web development demand is increasing 
+*  Automation is replacing manual tasks 
+*  Data science is used in every industry 
+*  Cloud computing relies heavily on Python scripts
 
 ### Career Demand
 Python consistently ranks among the most sought-after programming languages by employers worldwide.
