@@ -60,7 +60,7 @@ Python is widely used across industries and domains.
 
 *  Cloud Computing: Cloud automation, Serverless applications,Infrastructure management
 
-## 🛠️ 4. Required Skillset
+## 4.🛠️  Required Skillset
 
 ### Web Development Skills
 * Python Mastery(OOP & Asynchrony)
@@ -89,7 +89,7 @@ Python is widely used across industries and domains.
 * Azure
 * CI/CD Pipelines
 ---
-## 💼5. Career Opportunities
+## 5.💼 Career Opportunities
 
 Python professionals are in high demand across industries.
 
