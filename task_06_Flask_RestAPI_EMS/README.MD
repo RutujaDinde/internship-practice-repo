@@ -1,4 +1,3 @@
-# Employee Management REST API
 
 # Employee Management System (Flask REST API)
 
@@ -6,7 +5,6 @@
 **Date:** 01 July 2026
 
 ## Description
-A REST API-based Employee Management System built using Flask and SQLAlchemy.
 
 A Flask-based Employee Management REST API built using **Flask**, **MySQL**, and **SQLAlchemy**. The application performs CRUD (Create, Read, Update, Delete) operations and can be tested using **Postman**.
 
@@ -42,7 +40,7 @@ Employee_Management_REST_API/
 
 ```bash
 git clone <repository-url>
-cd Employee_Management_REST_API
+cd task_06_Flask_RestAPI_EMS
 
 python -m venv venv
 venv\Scripts\activate
