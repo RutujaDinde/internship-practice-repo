@@ -7,7 +7,6 @@ with app.app_context():
     db.create_all()
    
 
-
 @app.route("/")
 def home():
     return "Employee Management REST API"
@@ -40,19 +39,74 @@ def add_employee():
 
 
 #View Employees
-@app.route("/employees",   methods=["GET"])
-def get_all_employee() :
+#searching
+@app.route("/employees", methods=["GET"])
+def get_employees():
 
-    # Fetch all employees from database
-    emp_data=Employee.query.all()
+    query = Employee.query
 
-    # Empty list to store employee records  
-    employee_list=[]
+    # Search Parameters
+    name = request.args.get("name")
+    email = request.args.get("email")
+    department = request.args.get("department")
+    city = request.args.get("city")
+    hire_date = request.args.get("hire_date")
 
-    # Convert Employee objects into dictionaries
-    for emp in emp_data:
+    if name:
+        query = query.filter(Employee.Emp_Name.ilike(f"%{name}%"))
 
-        employee_list.append({
+    if email:
+        query = query.filter( Employee.Email.ilike(f"%{email}%") )
+
+    if department:
+        query = query.filter(Employee.Department == department)
+
+    if city:
+        query = query.filter(Employee.City == city)
+
+    if hire_date:
+        query = query.filter(Employee.Hire_Date == hire_date)
+
+
+    # Sorting
+    sort_by = request.args.get("sort_by")
+    order = request.args.get("order", "asc")
+
+    columns = {
+        "name": Employee.Emp_Name,
+        "department": Employee.Department,
+        "city": Employee.City,
+        "salary": Employee.Salary,
+        "hire_date": Employee.Hire_Date
+    }
+
+    if sort_by in columns:
+        if order == "desc":
+            query = query.order_by(columns[sort_by].desc())
+        else:
+            query = query.order_by(columns[sort_by].asc())
+
+    # Pagination
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 5, type=int)
+
+    employees = query.paginate(
+        page=page,
+        per_page=per_page,
+        error_out=False
+    )
+
+    if len(employees.items) == 0:
+        return jsonify({
+        "message": "No employees found"
+    }), 404
+
+    result=[]
+
+    for emp in employees.items:
+
+        result.append({
+
             "Emp_ID": emp.Emp_ID,
             "Emp_Name": emp.Emp_Name,
             "Email": emp.Email,
@@ -60,12 +114,20 @@ def get_all_employee() :
             "Department": emp.Department,
             "City": emp.City,
             "Salary": float(emp.Salary),
-            "Hire_Date": emp.Hire_Date.strftime("%Y-%m-%d")
+            "Hire_Date": str(emp.Hire_Date)
+
+        })
+
+    return jsonify({
+
+        "page": page,
+        "per_page": per_page,
+        "total_records": employees.total,
+        "total_pages": employees.pages,
+        "employees": result
+
+
     })
-        
-    return jsonify(employee_list),201
-
-
 
 #Search Employee
 @app.route("/employees/<int:emp_id>", methods=["GET"])
@@ -130,7 +192,6 @@ def update_employee(emp_id):
     }), 200
 
 
-
 # Delete Employee 
 @app.route("/employees/<int:emp_id>", methods=["DELETE"])
 def delete_employee(emp_id):
@@ -154,7 +215,10 @@ def delete_employee(emp_id):
     return jsonify({
         "message": "Employee Deleted Successfully"
     }), 200
-    
- 
+
+
+
+
+
 app.run(debug=True)
     
