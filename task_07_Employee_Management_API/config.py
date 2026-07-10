@@ -1,14 +1,18 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import pymysql
 
-pymysql.install_as_MySQLdb()
+load_dotenv()
 
 app = Flask(__name__)
 
-# Replace <your password> with your MySQL password
-app.config["SQLALCHEMY_DATABASE_URI"] = \
-    "mysql+pymysql://root:<your password>@127.0.0.1:3306/employee_rest_db"
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    f"mysql+pymysql://{os.getenv('DB_USER')}:"
+    f"{os.getenv('DB_PASSWORD')}@"
+    f"{os.getenv('DB_HOST')}/"
+    f"{os.getenv('DB_NAME')}"
+)
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
