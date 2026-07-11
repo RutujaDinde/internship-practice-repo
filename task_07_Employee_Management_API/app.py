@@ -2,6 +2,7 @@ from flask import request, jsonify
 from datetime import datetime
 from config import app, db
 from models import Employee
+from werkzeug.security import generate_password_hash, check_password_hash
 
 with app.app_context():
     db.create_all()
@@ -216,7 +217,74 @@ def delete_employee(emp_id):
         "message": "Employee Deleted Successfully"
     }), 200
 
+# ---------------- SIGN UP ----------------
 
+@app.route("/signup", methods=["POST"])
+def signup():
+
+    data = request.get_json()
+
+    # Check if email already exists
+    employee = Employee.query.filter_by(Email=data["Email"]).first()
+
+    if employee:
+        return jsonify({"message": "Email already exists"}), 409
+    
+    hashed_password = generate_password_hash(data["Password"])
+
+    new_employee = Employee(
+        Emp_Name=data["Emp_Name"],
+        Email=data["Email"],
+        Password=hashed_password,
+        Department=data["Department"],
+        City=data["City"],
+        Salary=data["Salary"],
+        Hire_Date=datetime.strptime(data["Hire_Date"], "%Y-%m-%d").date()
+    )
+
+    db.session.add(new_employee)
+    db.session.commit()
+
+    return jsonify({"message": "Signup Successful"}), 201
+    
+
+# ---------------- LOGIN ----------------
+
+@app.route("/login", methods=["POST"])
+def login():
+
+    data = request.get_json()
+
+    employee = Employee.query.filter_by(
+        Email=data["Email"],
+    ).first()
+
+    if employee and check_password_hash(
+        employee.Password,
+        data["Password"]
+    ):
+
+        return jsonify({
+            "message": "Login Successful",
+            "employee": {
+                "Emp_ID": employee.Emp_ID,
+                "Emp_Name": employee.Emp_Name,
+                "Email": employee.Email,
+                "Department": employee.Department,
+                "City":employee.City
+            }
+        }), 200
+
+    return jsonify({
+        "message": "Invalid Email or Password"
+    }), 401
+
+
+# ---------------- LOGOUT ----------------
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    return jsonify({"message": "Logout Successful"}), 200
 
 
 
