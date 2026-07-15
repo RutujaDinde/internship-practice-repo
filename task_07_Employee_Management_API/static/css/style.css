@@ -1,0 +1,233 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#eef4ff,#dbe9ff);
+    min-height:100vh;
+}
+
+/* Header */
+
+header{
+    width:100%;
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 30px;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo i{
+    margin-right:8px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+    font-size:16px;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#d9e8ff;
+}
+
+/* Container */
+
+.container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 20px;
+}
+
+/* Card */
+
+.card{
+    width:700px;
+    background:white;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+/* Login Card */
+
+.login-card{
+    width:420px;
+    min-height: 500px;
+}
+
+/* Icon */
+
+.icon{
+    width:75px;
+    height:70px;
+    background:#0d6efd;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:30px;
+}
+
+/* Heading */
+
+.card h2{
+    text-align:center;
+    margin-top:15px;
+    color:#1f2937;
+}
+
+.card p{
+    text-align:center;
+    color:#666;
+    margin-top:5px;
+    margin-bottom:20px;
+}
+
+/* Signup Form */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+/* Input */
+
+.input-box{
+    margin-bottom:8px;
+}
+
+.input-box label{
+    display:block;
+    margin-bottom:5px;
+    font-size:16px;
+    font-weight:600;
+}
+
+.input-field{
+    display:flex;
+    align-items:center;
+    height:40px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    padding:0 10px;
+}
+
+.input-field i{
+    color:#777;
+    font-size:15px;
+}
+
+.input-field input{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:8px;
+    font-size:15px;
+}
+
+/* Button */
+
+button{
+    width:220px;
+    height:42px;
+    display:block;
+    margin:20px auto;
+    border:none;
+    border-radius:6px;
+    background:#0d6efd;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#0b5ed7;
+}
+
+button i{
+    margin-right:6px;
+}
+
+/* Message */
+
+#message{
+    text-align:center;
+    margin-top:10px;
+    color:red;
+    font-weight:bold;
+}
+
+/* Bottom Link */
+
+.bottom-text{
+    text-align:center;
+    margin-top:15px;
+}
+
+.bottom-text a{
+    color:#0d6efd;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.bottom-text a:hover{
+    text-decoration:underline;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+header{
+    flex-direction:column;
+    gap:10px;
+}
+
+nav{
+    display:flex;
+    gap:15px;
+}
+
+nav a{
+    margin:0;
+}
+
+.card{
+    width:95%;
+    padding:20px;
+}
+
+.login-card{
+    width:95%;
+}
+
+.form-grid{
+    grid-template-columns:1fr;
+}
+
+button{
+    width:100%;
+}
+
+}

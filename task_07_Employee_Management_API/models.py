@@ -4,7 +4,7 @@ class Employee(db.Model):
 
     __tablename__ = "employees"
 
-    Emp_ID = db.Column(db.Integer, primary_key=True)
+    Emp_ID = db.Column(db.Integer, primary_key=True,autoincrement=True)
 
     Emp_Name = db.Column(db.String(100), nullable=False)
 

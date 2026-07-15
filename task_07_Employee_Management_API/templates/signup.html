@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <i class="fa-solid fa-users"></i>
+        Employee Management System
+    </div>
+
+    <nav>
+
+        <a href="/">Home</a>
+
+        <a href="/signup-page">Sign Up</a>
+
+        <a href="/login-page">Login</a>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="icon">
+            <i class="fa-solid fa-user-plus"></i>
+        </div>
+
+        <h2>Employee Registration</h2>
+
+        <p>Create your new account</p>
+
+        <form id="signupForm">
+
+            <div class="form-grid">
+
+                <div class="input-box">
+
+                    <label>Employee Name</label>
+
+                    <div class="input-field">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        <input
+                        type="text"
+id="Emp_Name"
+                        placeholder="Enter Employee Name"
+                        required>
+
+                    </div>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Email</label>
+
+                    <div class="input-field">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input type="email"id="Email" placeholder="Enter Email"required>
+
+                    </div>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Password</label>
+
+                    <div class="input-field">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input type="password" id="Password" placeholder="Enter Password" required>
+
+                    </div>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Department</label>
+
+                    <div class="input-field">
+
+                        <i class="fa-solid fa-building"></i>
+
+                        <input
+                        type="text" id="Department"placeholder="Department" required>
+
+                    </div>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>City</label>
+
+                    <div class="input-field">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <input type="text" id="City" placeholder="Enter City"required>
+
+                    </div>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Salary</label>
+
+                    <div class="input-field">
+
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                        <input type="number" id="Salary" placeholder="Enter Salary"required>
+
+                    </div>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Hire Date</label>
+
+                    <div class="input-field">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <input type="date" id="Hire_Date"required>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button type="submit">
+                <i class="fa-solid fa-user-plus"></i>
+                Register
+            </button>
+
+            <p id="message"></p>
+
+            <div class="bottom-text">
+
+                Already have an account?
+
+                <a href="/login-page">Login</a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+
+</body>
+</html>

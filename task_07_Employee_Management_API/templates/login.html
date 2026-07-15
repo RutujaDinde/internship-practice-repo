@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+
+        <i class="fa-solid fa-users"></i>
+        Employee Management System
+
+    </div>
+
+
+    <nav>
+
+        <a href="/">Home</a>
+
+        <a href="/signup-page">Sign Up</a>
+
+        <a href="/login-page">Login</a>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="card login-card">
+
+
+        <div class="icon">
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+        </div>
+
+
+
+        <h2>Employee Login</h2>
+
+
+        <p>Login to your account</p>
+
+
+
+        <form id="loginForm">
+
+
+            <div class="input-box">
+
+
+                <label>Email</label>
+
+
+                <div class="input-field">
+
+
+                    <i class="fa-regular fa-envelope"></i>
+
+
+                    <input  type="email" id="Email"placeholder="Enter Email" required>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="input-box">
+
+            <label>Password</label>
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input  type="password"  id="Password"  placeholder="Enter Password"  required>
+
+                </div>
+
+            </div>
+
+            <button type="submit">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Login
+
+            </button>
+
+            <p id="message"></p>
+
+            <div class="bottom-text"> Don't have an account?
+
+                <a href="/signup-page"> Register</a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+
+</html>

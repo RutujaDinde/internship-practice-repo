@@ -1,10 +1,11 @@
-from flask import request, jsonify
+from flask import request, jsonify,render_template
 from datetime import datetime
 from config import app, db
 from models import Employee
 from werkzeug.security import generate_password_hash, check_password_hash
 from schemas import EmployeeSchema, LoginSchema,UpdateEmployeeSchema
 from marshmallow import ValidationError
+
 
 employee_schema = EmployeeSchema()
 login_schema = LoginSchema()
@@ -28,7 +29,6 @@ def add_employee():
         data = employee_schema.load(request.get_json())
 
         employee = Employee(
-            Emp_ID=data["Emp_ID"],
             Emp_Name=data["Emp_Name"],
             Email=data["Email"],
             Password=generate_password_hash(data["Password"]),
@@ -237,7 +237,16 @@ def update_employee(emp_id):
         # Return response
         return jsonify({
             "success": True,
-            "message": "Employee Updated Successfully"
+            "message": "Employee Updated Successfully",
+            "employee": {
+                "Emp_ID": employee.Emp_ID,
+                "Emp_Name": employee.Emp_Name,
+                "Email": employee.Email,
+                "Department": employee.Department,
+                "City": employee.City,
+                "Salary": float(employee.Salary),
+                "Hire_Date": employee.Hire_Date.strftime("%Y-%m-%d")
+    }
         }), 200
     
     except ValidationError as err:
@@ -394,6 +403,16 @@ def logout():
     return jsonify({ "success": True,"message": "Logout Successful"}), 200
 
 
+
+# ---------------- sign up ,Login UI----------------
+
+@app.route("/signup-page")
+def signup_Page():
+    return render_template("signup.html")
+
+@app.route("/login-page")
+def signup_page():
+    return render_template("login.html")
 
 app.run(debug=True)
     
