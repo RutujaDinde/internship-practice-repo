@@ -1,5 +1,6 @@
 from flask import request, jsonify,render_template
 from datetime import datetime
+from sqlalchemy import func
 from config import app, db
 from models import Employee
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -414,5 +415,125 @@ def signup_Page():
 def signup_page():
     return render_template("login.html")
 
+#---------dashboard------
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html",active_page="dashboard")
+
+
+# ---------------- DASHBOARD API ----------------
+
+@app.route("/api/dashboard", methods=["GET"])
+def dashboard_data():
+
+    try:
+
+        # Total Employees
+        total_employees = Employee.query.count()
+
+        # Active Employees
+        active_employees = Employee.query.count()
+
+        # Employees Joined This Month
+        current_month = datetime.now().month
+        current_year = datetime.now().year
+
+        joined_this_month = Employee.query.filter(
+            func.month(Employee.Hire_Date) == current_month,
+            func.year(Employee.Hire_Date) == current_year
+        ).count()
+
+        # Department Count
+        departments = db.session.query(
+            Employee.Department,
+            func.count(Employee.Emp_ID)
+        ).group_by(
+            Employee.Department
+        ).all()
+
+        department_data = {}
+
+        for dept, count in departments:
+            department_data[dept] = count
+
+        # Employee Growth
+        period = request.args.get("period", "month")
+
+        if period == "year":
+
+            employee_growth = db.session.query(
+                func.year(Employee.Hire_Date),
+                func.count(Employee.Emp_ID)
+            ).group_by(
+                func.year(Employee.Hire_Date)
+            ).order_by(
+                func.year(Employee.Hire_Date)
+            ).all()
+
+        else:
+
+            employee_growth = db.session.query(
+                func.date_format(Employee.Hire_Date, "%Y-%m"),
+                func.count(Employee.Emp_ID)
+            ).group_by(
+                func.date_format(Employee.Hire_Date, "%Y-%m")
+            ).order_by(
+                func.date_format(Employee.Hire_Date, "%Y-%m")
+            ).all()
+
+        growth_labels = []
+        growth_values = []
+
+        for label, count in employee_growth:
+            growth_labels.append(str(label))
+            growth_values.append(count)
+
+        # Employee Table
+        employees = Employee.query.all()
+
+        employee_list = []
+
+        for emp in employees:
+
+            employee_list.append({
+
+                "Emp_ID": emp.Emp_ID,
+                "Emp_Name": emp.Emp_Name,
+                "Email": emp.Email,
+                "Department": emp.Department,
+                "City": emp.City,
+                "Salary": float(emp.Salary),
+                "Hire_Date": str(emp.Hire_Date)
+
+            })
+
+        return jsonify({
+
+            "success": True,
+            "total_employees": total_employees,
+            "active_employees": active_employees,
+            "joined_this_month": joined_this_month,
+            "department_count": len(department_data),
+            "departments": department_data,
+            "employees": employee_list,
+            "growth_labels": growth_labels,
+            "growth_values": growth_values
+
+        }), 200
+
+    except Exception as e:
+
+        return jsonify({
+
+            "success": False,
+            "message": str(e)
+
+        }), 500
+      
+@app.route("/employees-page")
+def employees_page():
+    return render_template("employee.html",active_page="employees")
+
 app.run(debug=True)
     
+

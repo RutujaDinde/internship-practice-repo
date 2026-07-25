@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}
+Employees
+{% endblock %}
+
+<!-- Search Bar -->
+{% block search %}
+
+<div class="search">
+
+    <i class="fas fa-search"></i>
+
+    <input type="text" id="searchName"placeholder="Search employees...">
+
+</div>
+
+{% endblock %}
+
+{% block content %}
+        <!-- Page Header -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h3>Employees</h3>
+
+                <h5>Dashboard / Employees</h5>
+
+            </div>
+
+            <a href="/signup-page" class="btn btn-success">
+
+                <i class="fas fa-user-plus"></i>
+
+                Add Employee
+
+            </a>
+
+        </div>
+
+        <!-- Filters -->
+
+        <div class="table-card">
+
+            <div class="filters">
+
+                <input type="text" id="searchName"class="form-control"placeholder="Search by Name">
+
+                <input type="text" id="searchEmail" class="form-control" placeholder="Search by Email">
+
+                <input type="text" id="cityFilter" class="form-control"placeholder="City">
+
+                <input type="date" id="hireDateFilter" class="form-control">
+
+                <select id="departmentFilter" class="form-select">
+
+                    <option value="">All Departments</option>
+                    <option value="IT">IT</option>
+                    <option value="HR">HR</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Finance">Finance</option>
+
+                </select>
+
+                <select id="sortEmployee" class="form-select">
+
+                    <option value="">Sort By</option>
+                    <option value="salary_asc">Salary ↑</option>
+                    <option value="salary_desc">Salary ↓</option>
+                    <option value="name_asc">Name A-Z</option>
+                    <option value="name_desc">Name Z-A</option>
+                    <option value="hire_date_asc">Hire_Date Oldest</option>
+                    <option value="hire_date_desc">Hire_Date Newest</option>
+
+                </select>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Employee</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>City</th>
+                            <th>Salary</th>
+                            <th>Hire Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="employeeTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+
+                <button id="prevBtn" class="btn btn-primary">
+
+                    Previous
+
+                </button>
+
+                <span id="pageInfo">
+
+                    Page 1
+
+                </span>
+
+                <button id="nextBtn" class="btn btn-primary">
+
+                    Next
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+{% endblock %}
+
