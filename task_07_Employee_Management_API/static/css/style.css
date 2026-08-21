@@ -5,229 +5,377 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
+
 body{
-    background:linear-gradient(135deg,#eef4ff,#dbe9ff);
+
+    background: linear-gradient(rgba(6,25,60,.65), rgba(6,25,60,.65)),
+        
+    url("{{ url_for('static', filename='uploads/auth-bg.png') }}");
+
+    background-size:cover;
     min-height:100vh;
-}
-
-/* Header */
-
-header{
-    width:100%;
-    background:black;
-    color:white;
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items:center;
-    padding:8px 30px;
-    box-shadow:0 2px 8px rgba(0,0,0,.2);
-}
-
-.logo{
-    font-size:25px;
-    font-weight:bold;
-}
-
-.logo i{
-    margin-right:8px;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:15px;
     font-size:16px;
-    font-weight:600;
+    padding:30px 20px;
 }
 
-nav a:hover{
-    color:#d9e8ff;
-}
 
 /* Container */
 
 .container{
+
     width:100%;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:30px 20px;
+    padding:20px;
+
 }
+
 
 /* Card */
 
 .card{
-    width:700px;
+    width:min(95%, 600px);
+    max-width:500px;
+    
     background:white;
     border-radius:15px;
-    padding:30px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    padding:20px 24px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
 }
+
 
 /* Login Card */
 
 .login-card{
-    width:420px;
-    min-height: 500px;
+
+     max-width:450px;
+    min-height:450px;
+    height:auto;
+
 }
+
+
 
 /* Icon */
 
 .icon{
-    width:75px;
-    height:70px;
+
+    width:58px;
+    height:58px;
     background:#0d6efd;
     color:white;
     border-radius:50%;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     margin:auto;
-    font-size:30px;
+
+    font-size:26px;
+
 }
+
+
 
 /* Heading */
 
 .card h2{
+
     text-align:center;
-    margin-top:15px;
+    margin-top:12px;
+
     color:#1f2937;
+
+    font-size:22px;
+
 }
 
+
+
 .card p{
+
     text-align:center;
+
     color:#666;
+
     margin-top:5px;
-    margin-bottom:20px;
+
+    margin-bottom:18px;
+
+    font-size:15px;
+
 }
+
+
 
 /* Signup Form */
 
 .form-grid{
+
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
-    gap:15px;
+
+    gap:8px;
+
 }
 
-/* Input */
+
+
+/* Input Box */
 
 .input-box{
-    margin-bottom:8px;
+
+    margin-bottom:5px;
+
 }
+
+
 
 .input-box label{
+
     display:block;
-    margin-bottom:5px;
-    font-size:16px;
+
+    margin-bottom:7px;
+
+    font-size:14px;
+
     font-weight:600;
+
 }
+
+
+
+/* Input Field */
 
 .input-field{
+
     display:flex;
+
     align-items:center;
-    height:40px;
+
+   min-height: 42px;
+
     border:1px solid #ccc;
-    border-radius:6px;
+
+    border-radius:8px;
+
     padding:0 10px;
+
 }
+
+
 
 .input-field i{
+
     color:#777;
-    font-size:15px;
+
+    font-size:14px;
+
 }
 
+
+
 .input-field input{
+
     width:100%;
+
     border:none;
+
     outline:none;
+
     padding:8px;
-    font-size:15px;
+
+    font-size:14px;
+
 }
+
+
 
 /* Button */
 
+
 button{
-    width:220px;
-    height:42px;
+
+    width:100%;
+
+    max-width:180px;
+
+    height:38px;
+
     display:block;
-    margin:20px auto;
+
+    margin:18px auto;
+
     border:none;
-    border-radius:6px;
+
+    border-radius:8px;
+
     background:#0d6efd;
+
     color:white;
-    font-size:16px;
+
+    font-size:15px;
+
     font-weight:600;
+
     cursor:pointer;
+
     transition:.3s;
+
 }
+
+
 
 button:hover{
+
     background:#0b5ed7;
+
 }
 
+
+
 button i{
+
     margin-right:6px;
+
 }
+
+
 
 /* Message */
 
+
 #message{
+
     text-align:center;
+
     margin-top:10px;
+
     color:red;
+
     font-weight:bold;
+
 }
+
+
 
 /* Bottom Link */
 
+
 .bottom-text{
+
     text-align:center;
-    margin-top:15px;
+
+    margin-top:12px;
+
+    font-size:15px;
+
 }
+
+
 
 .bottom-text a{
+
     color:#0d6efd;
+
     text-decoration:none;
+
     font-weight:bold;
+
 }
 
+
+
 .bottom-text a:hover{
+
     text-decoration:underline;
+
 }
+
+
 
 /* Responsive */
 
+
 @media(max-width:768px){
 
-header{
-    flex-direction:column;
-    gap:10px;
+     body{
+        align-items:flex-start;
+        padding:30px 15px;
+    }
+
+
+.container{
+
+    padding:15px;
+
 }
 
-nav{
-    display:flex;
-    gap:15px;
-}
 
-nav a{
-    margin:0;
-}
 
 .card{
+
     width:95%;
+    margin:20px 0;
+
     padding:20px;
+
 }
 
-.login-card{
-    width:95%;
-}
+
 
 .form-grid{
+
     grid-template-columns:1fr;
+
+}
+
+
+
+button{
+
+    width:100%;
+
+}
+
+
+}
+
+
+
+@media (max-width:576px){
+
+.card{
+    padding:18px;
+}
+
+.icon{
+    width:50px;
+    height:50px;
+    font-size:22px;
+}
+
+.card h2{
+    font-size:20px;
+}
+
+.input-box label{
+    font-size:13px;
+}
+
+.input-field input{
+    font-size:13px;
 }
 
 button{
-    width:100%;
+    max-width:100%;
 }
 
 }

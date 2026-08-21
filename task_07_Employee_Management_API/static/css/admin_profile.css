@@ -1,0 +1,276 @@
+/* ==========================================================
+   ADMIN PROFILE
+========================================================== */
+
+.admin-profile-wrapper{
+
+   min-height: calc(100vh - 120px);
+
+    justify-content:center;
+
+    display:flex;
+
+    align-items:center;
+    
+     padding: 0;
+
+    padding: 14px 0;
+    
+}
+
+
+
+/* ================= CARD ================= */
+
+.admin-profile-box{
+
+    width:560px;
+
+    background:#ffffff;
+
+    border-radius:12px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+
+    overflow:hidden;
+
+}
+
+
+/* ================= HEADER ================= */
+
+.admin-profile-top{
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #ececec;
+}
+
+
+.admin-avatar{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #2563eb;
+
+}
+
+
+.admin-basic{
+
+    flex:1;
+
+}
+
+
+.admin-basic h3{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:650;
+
+    color:#222;
+
+}
+
+
+.admin-basic p{
+
+    margin:4px 0 8px;
+
+    color:#6b7280;
+
+    font-size:15px;
+
+}
+
+
+#adminStatus{
+
+    display:inline-block;
+
+    background:#16a34a;
+
+    color:#fff;
+
+    padding:4px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+
+/* ================= DETAILS ================= */
+
+.admin-info-table{
+
+    padding:10px 15px;
+
+}
+
+
+.admin-info-table>div{
+
+   display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #f1f1f1;
+
+}
+
+.admin-info-table .form-control {
+    height: 32px;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+.admin-info-table textarea.form-control {
+    height: 52px;
+    resize: none;
+}
+
+
+.admin-info-table>div:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.admin-info-table label{
+
+    font-weight:600;
+
+    color:#444;
+
+    font-size:14px;
+
+}
+
+
+.admin-info-table span{
+
+    color:#222;
+
+    font-size:14px;
+
+    word-break:break-word;
+
+    overflow-wrap:anywhere;
+
+}
+
+
+.admin-address{
+
+    align-items:flex-start !important;
+
+}
+
+
+/* ================= BUTTONS ================= */
+
+.admin-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:18px;
+
+    border-top:1px solid #ececec;
+
+}
+
+
+.admin-buttons .btn{
+
+    width:170px;
+
+    height:40px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    border-radius:8px;
+
+}
+
+.admin-info-table input[readonly]{
+
+    background:#f1f5f9;
+
+    color:#475569;
+
+    cursor:not-allowed;
+
+}
+
+
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    .admin-profile-box{
+
+        width:100%;
+
+    }
+
+    .admin-profile-top{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .admin-info-table>div{
+
+        grid-template-columns:1fr;
+
+        gap:5px;
+
+    }
+
+    .admin-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .admin-buttons .btn{
+
+        width:100%;
+
+    }
+
+}

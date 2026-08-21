@@ -1,0 +1,201 @@
+{% extends "base_1.html" %}
+
+{% block title %}
+Employee Profile
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="profile-page">
+
+
+<!-- ================= HEADER ================= -->
+
+<div class="profile-header">
+
+    <div>
+
+        <h2>My Profile</h2>
+
+        <p>View your employee information.</p>
+
+    </div>
+
+</div>
+
+<!-- ================= MAIN PROFILE CARD ================= -->
+
+<div class="employee-profile-card">
+
+<!-- ================= LEFT PROFILE ================= -->
+
+
+<div class="employee-left">
+
+
+    <img  id="profile_Image"
+        src="/static/uploads/{{ employee.Profile_Image or 'default.png' }} "
+        class="employee-photo">
+
+
+    <h3 id="name">
+        -
+    </h3>
+
+
+    <p id="leftDesignation">
+        -
+    </p>
+
+
+    <span class="department-pill">
+
+        <span id="leftDepartment">
+            -
+        </span>
+
+    </span>
+
+    <span   class="status-pill"  id="leftStatus">
+        -
+    </span><br>
+
+    <button class="btn btn-primary edit-btn"
+        onclick="editProfile()">
+        <i class="fas fa-edit"></i>
+        Edit Profile
+
+    </button>
+
+</div>
+
+<!-- ================= RIGHT INFORMATION ================= -->
+
+<div class="employee-right">
+
+<h3 class="info-title">
+
+<i class="fas fa-user"></i>
+
+Employee Information
+
+</h3>
+
+<div class="info-list">
+
+<div class="info-row">
+
+<label >Employee ID</label>
+
+<span id="empId">
+-
+</span>
+
+</div>
+
+<div class="info-row">
+
+<label>Email</label>
+
+<span id="email">
+-
+</span>
+
+</div>
+
+<div class="info-row">
+
+<label>Phone Number</label>
+
+<span id="phone">
+-
+</span>
+
+</div>
+
+<div class="info-row">
+
+<label>Department</label>
+
+<span id="tableDepartment">
+-
+</span>
+
+</div>
+
+<div class="info-row">
+
+<label>Designation</label>
+
+<span id="tableDesignation">
+-
+</span>
+
+</div>
+
+<div class="info-row">
+
+<label>Hire Date</label>
+
+<span id="hire">
+-
+</span>
+
+</div>
+
+<div class="info-row">
+
+<label>City</label>
+
+<span id="city">
+-
+</span>
+
+</div>
+
+<div class="info-row">
+
+<label>Address</label>
+
+<span id="address">
+-
+</span>
+
+</div>
+
+<div class="info-row">
+
+<label>Status</label>
+
+<span id="status"class="active-badge">
+
+-
+</span>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= NOTE ================= -->
+
+<div class="profile-note">
+
+<i class="fas fa-info-circle"></i>
+
+Employees can update only 
+<strong>Phone Number, City, Address and Profile Photo.</strong>
+Contact Administrator for Name, Email, Department, Designation and Hire Date.
+</div>
+</div>
+
+<script src="/static/js/employee_profile.js"></script>
+
+
+{% endblock %}

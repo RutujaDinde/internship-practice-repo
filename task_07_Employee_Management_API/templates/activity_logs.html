@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}
+Activity Logs
+{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <h2>Activity Logs</h2><br>
+
+    <!-- <p>
+        View and monitor system activities.
+    </p> -->
+
+</div>
+
+
+<!-- =====================================================
+     FILTER SECTION
+===================================================== -->
+
+<div class="activity-filter">
+
+    <div class="filter-item">
+
+        <label>Search</label>
+
+        <input  type="text" id="searchInput" class="form-control" placeholder="Search description..." >
+
+    </div>
+
+
+    <div class="filter-item">
+
+        <label>Action</label>
+
+        <select  id="actionFilter"  class="form-select">
+
+            <option value="">All Actions</option>
+
+            <option value="LOGIN">LOGIN</option>
+
+            <option value="LOGOUT">LOGOUT</option>
+
+            <option value="REGISTER">REGISTER</option>
+
+            <option value="CREATE">CREATE</option>
+
+            <option value="UPDATE">UPDATE</option>
+
+            <option value="DELETE">DELETE</option>
+
+            <option value="PASSWORD_CHANGE">
+                PASSWORD CHANGE
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="filter-item">
+
+        <label>Module</label>
+
+        <select id="moduleFilter" class="form-select" >
+
+            <option value="">All Modules</option>
+
+            <option value="Auth">
+                Authentication
+            </option>
+
+            <option value="Employee">
+                Employee
+            </option>
+
+            <option value="Department">
+                Department
+            </option>
+
+            <option value="Password">
+                Password
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="filter-buttons">
+
+        <button type="button" class="btn btn-primary" onclick="loadActivityLogs(1)">
+            Search
+        </button>
+
+
+        <button type="button" class="btn btn-secondary" onclick="clearFilters()">
+            Clear
+        </button>
+
+
+        <button type="button" class="btn btn-success" onclick="exportActivityLogs()">
+            Export CSV
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ACTIVITY LOG TABLE
+===================================================== -->
+
+<div class="activity-log-table-wrapper">
+
+    <table class="table table-hover">
+
+        <thead>
+
+            <tr>
+
+                <th>Log ID</th>
+
+                <th>Employee</th>
+
+                <th>Role</th>
+
+                <th>Action</th>
+
+                <th>Module</th>
+
+                <th>Description</th>
+
+                <th>IP Address</th>
+
+                <th>Date & Time</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="activityLogsTable">
+
+            <tr>
+
+                <td  colspan="8" class="text-center">
+                    Loading...
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- =====================================================
+     PAGINATION
+===================================================== -->
+
+<div class="d-flex justify-content-between align-items-center mt-3">
+
+        <button  id="prevBtn"  class="btn btn-primary">
+            Previous
+        </button>
+
+        <span id="pageInfo">
+
+            Page 1
+
+        </span>
+
+        <button id="nextBtn" class="btn btn-primary">
+            Next
+
+        </button>
+
+    </div>
+
+
+<script src="{{ url_for( 'static', filename='js/activity_logs.js') }}"></script>
+
+{% endblock %}

@@ -1,11 +1,10 @@
-document.getElementById("loginForm")
-.addEventListener("submit", async function(event){
+document.getElementById("loginForm").addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
     const loginData = {
 
-        Email: document.getElementById("Email").value,
+        Email: document.getElementById("Email").value.trim(),
 
         Password: document.getElementById("Password").value
 
@@ -13,36 +12,46 @@ document.getElementById("loginForm")
 
     try {
 
-        const response = await fetch("/login", {method:"POST",
-            headers:{
-                "Content-Type":"application/json"},
+        const response = await fetch("/login", {
 
-            body:JSON.stringify(loginData)
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            credentials: "include",
+
+            body: JSON.stringify(loginData)
 
         });
 
         const result = await response.json();
 
-        if(response.ok){
+        if (response.ok && result.success) {
 
             alert(result.message);
 
-            window.location.href="/";
+            window.location.href = result.dashboard;
+
+        } 
+        
+        else {
+
+            alert(result.message || "Login Failed");
 
         }
 
-        else{
-            document.getElementById("message").innerHTML = result.message;
+    } 
+    
+    catch (error) {
 
-        }
-    }
+        console.error("Login Error:", error);
 
+        alert("Server Error");
 
-    catch(error){
-
-        document.getElementById("message").innerHTML ="Unable to connect to server.";
-
-        console.log(error);
     }
 
 });

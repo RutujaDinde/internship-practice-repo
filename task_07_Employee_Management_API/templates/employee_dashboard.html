@@ -1,0 +1,279 @@
+{% extends "base_1.html" %}
+
+{% block title %}
+Employee Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<!--- Welcome Banner-->
+
+<div class="welcome-banner">
+    <div class="welcome-text">
+
+        <h2>
+            Welcome Back,
+            <span id="welcomeName"></span> 👋
+        </h2>
+
+
+        <p>
+            Have a productive and successful day!
+        </p>
+
+
+    </div>
+
+    <div class="welcome-image">
+
+        <img src="/static/uploads/image_1.png" alt="Banner">
+
+    </div>
+
+</div>
+
+<!-- =========================
+     Statistics
+========================= -->
+
+
+<div class="row stats-row">
+
+<!-- Employee ID -->
+
+    <div class="col-lg-3 col-md-6">
+
+            <div class="card-box stat-card">
+
+            <div class="icon icon-blue">
+
+            <i class="fas fa-id-card"></i>
+
+    </div>
+    <div>
+
+            <small> Employee ID </small>
+
+
+            <h5 id="empId">
+            -
+            </h5>
+
+
+    </div>
+
+</div>
+</div>
+
+<!-- Department -->
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card-box stat-card">
+
+        <div class="icon icon-green">
+
+        <i class="fas fa-building"></i>
+
+        </div>
+
+        <div>
+                <small>Department</small>
+
+              <h5 id="dashDepartment">
+                 -
+             </h5>
+        </div>
+</div>
+</div>
+
+<!-- Designation -->
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="card-box stat-card">
+
+        <div class="icon icon-purple">
+
+        <i class="fas fa-user-tie"></i>
+
+        </div>
+
+    <div>
+
+        <small>Designation</small>
+
+        <h5 id="dashDesignation">
+        -
+        </h5>
+        </div>
+
+</div>
+</div>
+
+<!-- Status -->
+<div class="col-lg-3 col-md-6">
+
+<div class="card-box stat-card">
+
+    <div class="icon icon-orange">
+
+    <i class="fas fa-check-circle"></i>
+
+    </div>
+
+    <div>
+
+        <small>Status</small>
+
+    <h5>
+    <span id="dashStatus"
+    class="badge bg-success">
+    -
+    </span>
+    </h5>
+
+    </div>
+
+    </div>
+
+</div>
+</div>
+
+<!-- =========================
+     Employee Information
+========================= -->
+
+<div class="row info-row-section">
+
+<!-- LEFT INFORMATION -->
+
+<div class="col-lg-8 d-flex">
+<div class="card-box employee-card w-100">
+<h4>Employee Information</h4>
+
+    <div class="row align-items-center">
+    <div class="col-md-4 text-center">
+    <img id="profileImage"
+
+    src="/static/uploads/{{ employee.Profile_Image or 'default.png' }}"
+
+    class="profile-img"
+
+    alt="Profile">
+
+    </div>
+
+
+<div class="col-md-8">
+
+<div class="info-row">
+
+    <i class="fas fa-envelope"></i>
+
+    <label>Email</label>
+
+    <span id="email">
+    -
+    </span>
+
+</div>
+
+<div class="info-row">
+<i class="fas fa-phone"></i>
+
+    <label>Phone</label>
+
+    <span id="phone">
+    -
+    </span>
+
+</div>
+
+<div class="info-row">
+
+    <i class="fas fa-calendar"></i>
+
+    <label>Hire Date</label>
+
+
+    <span id="hireDate">
+    -
+    </span>
+
+</div>
+
+
+<div class="info-row">
+
+    <i class="fas fa-location-dot"></i>
+
+    <label>City</label>
+
+    <span id="city">
+    -
+    </span>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- QUICK ACTION -->
+<div class="col-lg-4 d-flex">
+<div class="card-box quick-card w-100">
+
+    <h4>Quick Actions</h4>
+
+    <button class="action-btn action-blue"onclick="openProfile()">
+
+    <i class="fas fa-user"></i>
+
+<div>
+
+    <b>View Profile</b>
+
+    <small>View complete profile</small>
+
+</div>
+</button>
+
+<button
+
+    class="action-btn action-green"
+
+    onclick="editProfile()">
+
+    <i class="fas fa-pen"></i>
+
+<div>
+<b>Edit Profile</b>
+
+<small>Update profile details</small>
+
+</div>
+</button>
+
+<button class="action-btn action-purple"onclick="changePassword()">
+
+<i class="fas fa-lock"></i>
+
+<div>
+
+    <b>Change Password</b>
+
+    <small>Update account password</small>
+
+</div>
+</button>
+</div>
+</div>
+</div>
+
+<script src="/static/js/employee_dashboard.js"></script>
+
+
+{% endblock %}

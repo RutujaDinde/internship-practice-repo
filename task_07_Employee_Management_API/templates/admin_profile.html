@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Profile
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/admin_profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-profile-wrapper">
+
+    <!-- ================= VIEW PROFILE ================= -->
+
+    <div id="viewProfile" class="admin-profile-box">
+
+        <!-- Header -->
+
+        <div class="admin-profile-top">
+
+            <img  id="profileImage" src="{{ url_for('static', filename='uploads/default.png') }}"class="admin-avatar" alt="Profile Image">
+
+            <div class="admin-basic">
+
+                <h3 id="adminName">
+                    Loading...
+                </h3>
+
+                <p id="adminDesignation">
+                    -
+                </p>
+
+                <span id="adminStatus">
+                    -
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Details -->
+
+        <div class="admin-info-table">
+
+            <div class="detail-row">
+
+                <label>Email</label>
+
+                <span id="adminEmail"></span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <label>Phone Number</label>
+
+                <span id="adminPhone"></span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <label>Department</label>
+
+                <span id="adminDepartment"></span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <label>Designation</label>
+
+                <span id="adminDesignationText"></span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <label>Role</label>
+
+                <span id="adminRoleText"></span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <label>Joining Date</label>
+
+                <span id="adminJoined"></span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <label>City</label>
+
+                <span id="adminCity"></span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <label>Address</label>
+
+                <span id="adminAddress"></span>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="admin-buttons">
+
+            <button id="editBtn"type="button" class="btn btn-primary">
+
+                <i class="fas fa-edit"></i>
+
+                Edit Profile
+
+            </button>
+
+            <a href="/admin/change-password-page"
+
+            class="btn btn-outline-secondary">
+
+                <i class="fas fa-lock"></i>
+
+                Change Password
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= EDIT PROFILE ================= -->
+
+<form id="editProfile"class="admin-profile-box"style="display:none;"enctype="multipart/form-data">
+
+    <!-- Header -->
+
+    <div class="admin-profile-top">
+
+        <img id="editProfilePreview" src="{{ url_for('static', filename='uploads/default.png') }}"
+
+        class="admin-avatar"
+
+        alt="Profile Image">
+
+        <div class="admin-basic">
+
+            <h3>
+
+                Edit Profile
+
+            </h3>
+
+         <button type="button" id="changePhotoBtn"
+
+            class="btn btn-sm btn-outline-primary mt-2">
+
+                <i class="fas fa-camera"></i>
+
+                Change Photo
+
+            </button>
+
+            <input type="file" id="editProfileImage" name="Profile_Image" accept="image/*" hidden>
+
+        </div>
+
+    </div>
+
+
+    <!-- Details -->
+
+    <div class="admin-info-table">
+
+        <!-- Name -->
+
+        <div class="detail-row">
+
+            <label>Full Name</label>
+
+            <input type="text" id="editName" name="adminEmp_Name"class="form-control"required>
+
+        </div>
+
+        <!-- Email -->
+
+        <div class="detail-row">
+
+            <label>Email</label>
+
+            <input type="email" id="editEmail" class="form-control"readonly>
+
+        </div>
+
+        <!-- Phone -->
+
+        <div class="detail-row">
+
+            <label>Phone Number</label>
+
+            <input type="text" id="editPhone"name="adminPhone"class="form-control">
+
+        </div>
+
+        <!-- Department -->
+
+        <div class="detail-row">
+
+            <label>Department</label>
+
+            <input
+
+            type="text" id="editDepartment"class="form-control"readonly>
+
+        </div>
+
+        <!-- Designation -->
+
+        <div class="detail-row">
+
+            <label>Designation</label>
+
+            <input type="text" id="editDesignation" class="form-control" readonly>
+
+        </div>
+
+        <!-- Role -->
+
+        <div class="detail-row">
+
+            <label>Role</label>
+
+            <input type="text" id="editRole" class="form-control"readonly>
+
+        </div>
+
+        <!-- Status -->
+
+        <div class="detail-row">
+
+            <label>Status</label>
+
+            <input type="text" id="editStatus" class="form-control" readonly>
+
+        </div>
+
+        <!-- Joining Date -->
+
+        <div class="detail-row">
+
+            <label>Joining Date</label>
+
+            <input type="text" id="editJoined" class="form-control" readonly>
+
+        </div>
+
+        <!-- City -->
+
+        <div class="detail-row">
+
+            <label>City</label>
+
+            <input type="text" id="editCity" name="adminCity" class="form-control">
+
+        </div>
+
+        <!-- Address -->
+
+        <div class="detail-row">
+
+            <label>Address</label>
+
+            <textarea  id="editAddress" name="adminAddress" rows="3"class="form-control"></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="admin-buttons">
+
+        <button type="submit" class="btn btn-success" id="saveBtn">
+
+            <i class="fas fa-save"></i>
+
+            Save Changes
+
+        </button>
+
+        <button type="button"class="btn btn-secondary" id="cancelBtn">
+
+            Cancel
+
+        </button>
+
+    </div>
+
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/admin_profile.js') }}"></script>
+
+{% endblock %}

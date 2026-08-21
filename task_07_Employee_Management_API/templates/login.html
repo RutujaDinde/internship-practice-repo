@@ -10,43 +10,39 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<style>
+
+    *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+
+    body{
+
+        min-height:100vh;
+
+            
+            background: linear-gradient(rgba(6,25,60,.65), rgba(6,25,60,.65)),
+        
+            url("{{ url_for('static', filename='uploads/auth-bg.png') }}");
+
+            background-size:cover;
+
+
+        }
+</style>
 
 </head>
 
-
 <body>
 
-
-<header>
-
-    <div class="logo">
-
-        <i class="fa-solid fa-users"></i>
-        Employee Management System
-
-    </div>
-
-
-    <nav>
-
-        <a href="/">Home</a>
-
-        <a href="/signup-page">Sign Up</a>
-
-        <a href="/login-page">Login</a>
-
-    </nav>
-
-</header>
-
-
 <div class="container">
-
-
     <div class="card login-card">
-
 
         <div class="icon">
 
@@ -54,39 +50,25 @@
 
         </div>
 
-
-
         <h2>Employee Login</h2>
-
 
         <p>Login to your account</p>
 
-
-
         <form id="loginForm">
-
 
             <div class="input-box">
 
-
                 <label>Email</label>
-
 
                 <div class="input-field">
 
-
                     <i class="fa-regular fa-envelope"></i>
-
 
                     <input  type="email" id="Email"placeholder="Enter Email" required>
 
-
                 </div>
 
-
             </div>
-
-
 
             <div class="input-box">
 
@@ -108,13 +90,15 @@
 
             </button>
 
-            <p id="message"></p>
+            <div class="text-end mb-3">
 
-            <div class="bottom-text"> Don't have an account?
+    <a href="/forgot-password-page">
 
-                <a href="/signup-page"> Register</a>
+        Forgot Password?
 
-            </div>
+    </a>
+
+</div>
 
         </form>
 
@@ -122,9 +106,12 @@
 
 </div>
 
+<!-- Authentication JS -->
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 
+
+<!-- Login JS -->
 <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 
 </body>
-
 </html>

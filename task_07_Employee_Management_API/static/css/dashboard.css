@@ -62,16 +62,11 @@ select{
     left:0;
     width:230px;
     height:100vh;
-
-    display:flex;
-    flex-direction:column;
+    z-index:1000;
 
     background:linear-gradient(180deg,#0f172a,#1e293b);
 
     color:#fff;
-
-    overflow-y:auto;
-    overflow-x:hidden;
 
     box-shadow:8px 0 20px rgba(0,0,0,.18);
 
@@ -147,17 +142,15 @@ select{
     border-radius:14px;
 }
 
-.avatar{
-    width:50px;
-    height:50px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.profile .avatar img {
+
+    width:55px;
+    height:55px;
+
     border-radius:50%;
-    background:linear-gradient(135deg,#4F8CFF,#2563eb);
-    color:#fff;
-    font-size:22px;
-    flex-shrink:0;
+
+    object-fit:cover;
+
 }
 
 .profile h4{
@@ -289,7 +282,7 @@ select{
     gap:15px;
 }
 
-.menu-btn{
+.menuBtn{
     border:none;
     background:none;
     font-size:20px;
@@ -603,7 +596,7 @@ canvas{
     margin-bottom:20px;
 }
 
-.table-responsive{
+.table-scroll{
     width:100%;
     overflow-x:auto;
 }
@@ -687,26 +680,18 @@ canvas{
     font-size:12px;
 }
 
-/* ==========================
+/* /* ==========================
    ACTION BUTTONS
 ========================== */
 
 .actions{
     display:flex;
     justify-content:center;
-    gap:8px;
+    gap:5px;
 }
 
-.action-btn{
-    width:34px;
-    height:34px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    transition:.3s;
-}
 
-.view-btn{
+/* .view-btn{
     background:#dbeafe;
     color:#2563eb;
 }
@@ -719,11 +704,11 @@ canvas{
 .delete-btn{
     background:#fee2e2;
     color:#dc2626;
-}
+} */
 
-.action-btn:hover{
+/* .action-btn:hover{
     transform:translateY(-2px);
-}
+} */ */
 
 /* ==========================
    PAGINATION
@@ -764,6 +749,93 @@ canvas{
     box-shadow:0 4px 15px rgba(0,0,0,.05);
 }
 
+
+
+
+/* ==========================================================
+   ACTIVITY LOG FILTERS
+========================================================== */
+
+.activity-filter {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    flex-wrap: nowrap;
+}
+
+.activity-filter .filter-item {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Search */
+.activity-filter .filter-item:first-child {
+    width: 280px;
+}
+
+/* Action */
+.activity-filter .filter-item:nth-child(2) {
+    width: 170px;
+}
+
+/* Module */
+.activity-filter .filter-item:nth-child(3) {
+    width: 180px;
+}
+
+/* Labels */
+.activity-filter label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Inputs and dropdowns */
+.activity-filter input,
+.activity-filter select {
+    height: 42px;
+    width: 100%;
+    font-size: 14px;
+}
+
+/* Buttons */
+.activity-filter .filter-buttons {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.activity-filter .filter-buttons button {
+    height: 42px;
+    padding: 0 16px;
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1000px) {
+
+    .activity-filter {
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
+
+    .activity-filter .filter-item:first-child {
+        width: 250px;
+    }
+
+    .activity-filter .filter-item:nth-child(2),
+    .activity-filter .filter-item:nth-child(3) {
+        width: 160px;
+    }
+
+}
 /* ==========================
    RESPONSIVE
 ========================== */
@@ -806,6 +878,18 @@ canvas{
         height:auto;
         padding:15px;
         gap:15px;
+    }
+
+    .sidebar{
+        left:-250px;
+    }
+
+    .sidebar.active{
+        left:0;
+    }
+
+    .topbar{
+        display:flex;
     }
 
     .search{

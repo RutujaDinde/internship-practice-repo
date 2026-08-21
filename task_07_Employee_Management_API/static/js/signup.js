@@ -1,18 +1,31 @@
-document.getElementById("signupForm").addEventListener("submit", async function (event) {
+document.getElementById("SignupForm").addEventListener("submit", async function (e) {
 
-    event.preventDefault();
+    e.preventDefault();
 
-    const employee = {
+    const message = document.getElementById("message");
 
-        Emp_Name: document.getElementById("Emp_Name").value,
-        Email: document.getElementById("Email").value,
-        Password: document.getElementById("Password").value,
-        Department: document.getElementById("Department").value,
-        City: document.getElementById("City").value,
-        Salary: document.getElementById("Salary").value,
-        Hire_Date: document.getElementById("Hire_Date").value
+    const formData = new FormData();
 
-    };
+    formData.append( "Emp_Name", document.getElementById("Emp_Name").value);
+
+    formData.append( "Email", document.getElementById("Email").value );
+
+    formData.append(  "Password",  document.getElementById("Password").value);
+
+    formData.append("Phone_No",document.getElementById("Phone_No").value );
+
+    formData.append( "Address", document.getElementById("Address").value );
+
+    formData.append( "City", document.getElementById("City").value);
+
+    // Profile Image (optional)
+
+    const image = document.getElementById("Profile_Image").files[0];
+
+
+    if (image) {
+        formData.append(  "Profile_Image", image );
+    }
 
     try {
 
@@ -20,38 +33,39 @@ document.getElementById("signupForm").addEventListener("submit", async function 
 
             method: "POST",
 
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify(employee)
+            body: formData
 
         });
-
         const result = await response.json();
 
-        if (response.ok) {
+        if (result.success) {
 
-            alert(result.message);
-            window.location.href = "/login-page";
+            message.style.color = "green";
 
-        } else {
+            message.innerText = result.message;
 
-            if (result.errors) {
+            setTimeout(() => {
 
-                document.getElementById("message").innerHTML = JSON.stringify(result.errors);
+                window.location.href = "/login-page";
 
-            } else {
+            },1500);
 
-                document.getElementById("message").innerHTML =result.message;
+        } 
+        else {
 
-            }
+            message.style.color = "red";
+
+            message.innerText = result.message || "Signup failed";
 
         }
 
-    } catch (error) {
+    } catch(error) {
 
-        document.getElementById("message").innerHTML = "Unable to connect to server.";
+        console.error(error);
+
+        message.style.color = "red";
+
+        message.innerText = "Server Error";
 
     }
 

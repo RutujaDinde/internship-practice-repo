@@ -1,182 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Registration</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<title>Create Administrator Account</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
 
-<header>
-
-    <div class="logo">
-        <i class="fa-solid fa-users"></i>
-        Employee Management System
-    </div>
-
-    <nav>
-
-        <a href="/">Home</a>
-
-        <a href="/signup-page">Sign Up</a>
-
-        <a href="/login-page">Login</a>
-
-    </nav>
-
-</header>
-
-
 <div class="container">
 
-    <div class="card">
+<div class="card">
 
-        <div class="icon">
-            <i class="fa-solid fa-user-plus"></i>
-        </div>
+<div class="icon">
+<i class="fa-solid fa-user-shield"></i>
+</div>
 
-        <h2>Employee Registration</h2>
+<h2>Create Administrator Account</h2>
 
-        <p>Create your new account</p>
+<p>Setup your system administrator</p>
 
-        <form id="signupForm">
+<form id="SignupForm" enctype="multipart/form-data">
 
-            <div class="form-grid">
 
-                <div class="input-box">
+<div class="form-grid">
 
-                    <label>Employee Name</label>
+<!-- Name -->
 
-                    <div class="input-field">
+<div class="input-box">
 
-                        <i class="fa-regular fa-user"></i>
+<label>Full Name</label>
 
-                        <input
-                        type="text"
-id="Emp_Name"
-                        placeholder="Enter Employee Name"
-                        required>
+<div class="input-field">
 
-                    </div>
+<i class="fa-solid fa-user"></i>
 
-                </div>
+<input type="text" id="Emp_Name" placeholder="Enter Full Name" required>
 
-                <div class="input-box">
+</div>
 
-                    <label>Email</label>
+</div>
 
-                    <div class="input-field">
+<!-- Email -->
 
-                        <i class="fa-regular fa-envelope"></i>
+<div class="input-box">
 
-                        <input type="email"id="Email" placeholder="Enter Email"required>
+<label>Email</label>
 
-                    </div>
+<div class="input-field">
 
-                </div>
+<i class="fa-solid fa-envelope"></i>
 
-                <div class="input-box">
+<input type="email" id="Email" placeholder="Enter Email" required>
 
-                    <label>Password</label>
+</div>
 
-                    <div class="input-field">
+</div>
 
-                        <i class="fa-solid fa-lock"></i>
 
-                        <input type="password" id="Password" placeholder="Enter Password" required>
+<!-- Password -->
 
-                    </div>
+<div class="input-box">
 
-                </div>
+<label>Password</label>
 
-                <div class="input-box">
+<div class="input-field">
 
-                    <label>Department</label>
+<i class="fa-solid fa-lock"></i>
 
-                    <div class="input-field">
+<input type="password" id="Password" placeholder="Enter Password"required>
 
-                        <i class="fa-solid fa-building"></i>
+</div>
 
-                        <input
-                        type="text" id="Department"placeholder="Department" required>
+</div>
 
-                    </div>
+<!-- Phone -->
 
-                </div>
+<div class="input-box">
 
-                <div class="input-box">
+<label>Phone Number</label>
 
-                    <label>City</label>
+<div class="input-field">
 
-                    <div class="input-field">
+<i class="fa-solid fa-phone"></i>
 
-                        <i class="fa-solid fa-location-dot"></i>
+<input type="text" id="Phone_No" placeholder="Enter Phone Number" required>
 
-                        <input type="text" id="City" placeholder="Enter City"required>
+</div>
 
-                    </div>
+</div>
 
-                </div>
+<!-- Address -->
 
-                <div class="input-box">
+<div class="input-box">
 
-                    <label>Salary</label>
+<label>Address</label>
 
-                    <div class="input-field">
+<div class="input-field">
 
-                        <i class="fa-solid fa-indian-rupee-sign"></i>
+<i class="fa-solid fa-location-dot"></i>
 
-                        <input type="number" id="Salary" placeholder="Enter Salary"required>
+<input type="text" id="Address" placeholder="Enter Address" required>
 
-                    </div>
+</div>
 
-                </div>
+</div>
 
-                <div class="input-box">
+<!-- City -->
 
-                    <label>Hire Date</label>
+<div class="input-box">
 
-                    <div class="input-field">
+<label>City</label>
 
-                        <i class="fa-regular fa-calendar"></i>
+<div class="input-field">
 
-                        <input type="date" id="Hire_Date"required>
+<i class="fa-solid fa-city"></i>
 
-                    </div>
+<input  type="text"id="City" placeholder="Enter City"required>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-            <button type="submit">
-                <i class="fa-solid fa-user-plus"></i>
-                Register
-            </button>
+<!-- Profile Image -->
 
-            <p id="message"></p>
+<div class="input-box">
 
-            <div class="bottom-text">
+<label>Profile Image (Optional)</label>
 
-                Already have an account?
+<div class="input-field">
 
-                <a href="/login-page">Login</a>
+<i class="fa-solid fa-image"></i>
 
-            </div>
+<input type="file" id="Profile_Image"accept="image/*">
 
-        </form>
+</div>
 
-    </div>
+</div>
+
+</div>
+
+<button type="submit">
+
+<i class="fa-solid fa-user-shield"></i>
+
+Create Admin Account
+
+</button>
+
+<p id="message"></p>
+
+<div class="bottom-text">
+
+Already have an account?
+
+<a href="/login-page">Login</a>
+
+</div>
+
+</form>
+
+</div>
 
 </div>
 
 <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
 
 </body>
+
 </html>
