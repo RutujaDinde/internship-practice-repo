@@ -31,7 +31,7 @@ app.config["JWT_REFRESH_COOKIE_NAME"] = "refresh_token_cookie"
 
 # Cookie Settings
 app.config["JWT_COOKIE_HTTPONLY"] = True
-app.config["JWT_COOKIE_SECURE"] = False      # True for HTTPS in production
+app.config["JWT_COOKIE_SECURE"] = True      # True for HTTPS in production
 app.config["JWT_COOKIE_SAMESITE"] = "Lax"
 
 # Token Expiry

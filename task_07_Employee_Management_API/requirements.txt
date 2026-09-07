@@ -3,3 +3,8 @@ Flask-SQLAlchemy
 pymysql
 python-dotenv
 Flask-JWT-Extended
+marshmallow
+Flask-Marshmallow
+Werkzeug
+gunicorn
+Flask-Mail
