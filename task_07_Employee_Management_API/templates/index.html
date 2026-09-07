@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Employee Management System</title>
+
+  <meta content="Employee Management System for managing employees, departments and roles"  name="description">
+
+  <meta content="EMS, Employee Management, Employees, Departments, HR"name="keywords">
+
+
+  <!-- Favicons -->
+
+  <link href="{{ url_for('static', filename='assets/img/favicon.png') }}" rel="icon">
+
+  <link href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+
+  <!-- Google Fonts -->
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+
+  <!-- Vendor CSS Files -->
+
+  <link href="{{ url_for('static', filename='assets/vendor/aos/aos.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css') }}"  rel="stylesheet">
+
+
+  <!-- Main CSS -->
+
+  <link href="{{ url_for('static', filename='assets/css1/style2.css') }}"  rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+  <!-- ======= Header ======= -->
+
+  <header id="header" class="fixed-top">
+
+    <div class="container d-flex align-items-center">
+
+      <!-- EMS Logo -->
+
+      <a href="/" class="logo me-auto">
+
+        <h2 style="margin: 0; color: white;">
+          EMS
+        </h2>
+
+      </a>
+
+
+      <!-- Navigation -->
+
+      <nav id="navbar" class="navbar">
+
+        <ul>
+
+          <li>
+            <a class="nav-link scrollto active" href="#hero">
+              Home
+            </a>
+          </li>
+
+
+          <li>
+            <a class="nav-link scrollto" href="#about">
+              About
+            </a>
+          </li>
+
+
+          <li>
+            <a class="nav-link scrollto" href="#services">
+              Features
+            </a>
+          </li>
+
+
+          <li>
+            <a class="nav-link scrollto" href="/contact">
+              Contact
+            </a>
+          </li>
+
+
+          <!-- Login ---->
+
+          <li>
+            <a class="getstarted scrollto"
+               href="/login-page">
+
+              Employee Login
+
+            </a>
+          </li>
+
+        <i class="bi bi-list mobile-nav-toggle"></i>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- End Header -->
+
+
+
+  <!-- ======= Hero Section ======= -->
+
+  <section id="hero"     class="d-flex align-items-center">
+
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Hero Text -->
+
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+             data-aos="fade-up"
+             data-aos-delay="200">
+
+               <h1 class="hero-heading">
+                Employee Management 
+                <span>System</span>
+              </h1>
+
+              <h2>
+                  Manage your employees efficiently and effortlessly
+              </h2>
+
+            <p class="hero-description">
+                A simple and powerful Employee Management System
+                for managing employees, departments, roles and records.
+            </p>
+
+          <div class="d-flex justify-content-center justify-content-lg-start">
+
+            <a href="/login-page"  class="btn-get-started scrollto">
+
+              Get Started
+
+            </a>
+
+
+            <a href="/login-page"
+               class="btn-watch-video">
+
+              <i class="bi bi-box-arrow-in-right"></i>
+
+              Employee Login
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Hero Image -->
+
+        <div class="col-lg-6 order-1 order-lg-2 hero-img"
+             data-aos="zoom-in"
+             data-aos-delay="200">
+
+          <img src="{{ url_for('static',    filename='assets/img/hero-img.png') }}"
+               class="img-fluid animated"
+               alt="Employee Management System">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- End Hero -->
+
+
+
+  <main id="main">
+
+
+    <!-- ======= About Section ======= -->
+
+    <section id="about" class="about">
+      <div class="container"  data-aos="fade-up">
+
+        <div class="section-title">
+
+          <h2>About EMS</h2>
+
+        </div>
+
+
+        <div class="row content">
+
+          <div class="col-lg-6">
+
+            <p>
+              Employee Management System helps organizations
+              manage their employee information in one centralized
+              and secure platform.
+            </p>
+
+            <ul>
+
+              <li>
+                <i class="ri-check-double-line"></i>
+                Manage employee records
+              </li>
+
+              <li>
+                <i class="ri-check-double-line"></i>
+                Manage departments and roles
+              </li>
+
+              <li>
+                <i class="ri-check-double-line"></i>
+                Keep employee information organized
+              </li>
+
+            </ul>
+
+          </div>
+
+
+          <div class="col-lg-6 pt-4 pt-lg-0">
+
+            <p>
+              EMS makes it easier for administrators and employees
+              to access and manage information while keeping the
+              system organized and secure.
+            </p>
+
+            <a href="/login-page"
+               class="btn-learn-more">
+
+              Get Started
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- End About Section -->
+
+
+
+    <!-- ======= Features Section ======= -->
+
+    <section id="services"   class="services section-bg">
+
+      <div class="container"data-aos="fade-up">
+
+        <div class="section-title">
+
+          <h2>Features</h2>
+
+          <p>
+            Everything you need to manage employee information
+            efficiently.
+          </p>
+
+        </div>
+
+        <div class="row">
+
+          <!-- Employee Management -->
+
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+
+            <div class="icon-box">
+
+              <div class="icon">
+                <i class="bx bx-user"></i>
+              </div>
+
+              <h4>      
+                  Employee Management
+              </h4>
+
+              <p>
+                Add, update and manage employee information
+                from one place.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Departments -->
+
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+               data-aos="zoom-in"
+               data-aos-delay="200">
+
+            <div class="icon-box">
+
+              <div class="icon">
+                <i class="bx bx-buildings"></i>
+              </div>
+
+              <h4>
+                  Departments
+              </h4>
+
+              <p>
+                Organize employees according to their
+                departments.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Roles -->
+
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+               data-aos="zoom-in"
+               data-aos-delay="300">
+
+            <div class="icon-box">
+
+              <div class="icon">
+                <i class="bx bx-shield"></i>
+              </div>
+
+              <h4>
+                  Role Management
+              </h4>
+
+              <p>
+                Manage employee access and permissions
+                according to their roles.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Records -->
+
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+
+            <div class="icon-box">
+
+              <div class="icon">
+                <i class="bx bx-data"></i>
+              </div>
+
+              <h4>
+                  Employee Records
+              </h4>
+
+              <p>
+                Keep employee records organized,
+                accessible and secure.
+              </p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- End Features Section -->
+  </main>
+
+  <!-- ======= Footer ======= -->
+
+  <footer id="footer">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-6">
+
+          <h3>EMS</h3>
+
+          <p>
+            Employee Management System
+          </p>
+
+        </div>
+
+
+        <div class="col-lg-6 text-lg-end">
+
+          <p>
+            © 2026 Employee Management System.
+            All Rights Reserved.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- End Footer -->
+
+
+
+  <!-- Preloader -->
+
+  <div id="preloader"></div>
+
+
+  <!-- Back To Top -->
+
+  <a href="#"
+     class="back-to-top d-flex align-items-center justify-content-center">
+
+    <i class="bi bi-arrow-up-short"></i>
+
+  </a>
+
+
+
+  <!-- Vendor JS Files -->
+
+  <script src="{{ url_for('static',   filename='assets/vendor/aos/aos.js') }}">
+  </script>
+
+  <script src="{{ url_for('static',  filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}">
+  </script>
+
+  <script src="{{ url_for('static', filename='assets/vendor/glightbox/js/glightbox.min.js') }}">
+  </script>
+
+  <script src="{{ url_for('static', filename='assets/vendor/isotope-layout/isotope.pkgd.min.js') }}">
+  </script>
+
+  <script src="{{ url_for('static',filename='assets/vendor/swiper/swiper-bundle.min.js') }}">
+  </script>
+
+  <script src="{{ url_for('static',filename='assets/vendor/waypoints/noframework.waypoints.js') }}">
+  </script>
+
+
+  <!-- Main JS -->
+
+  <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+
+</body>
+
+</html>
+
