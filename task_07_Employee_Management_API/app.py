@@ -60,6 +60,13 @@ with app.app_context():
     db.create_all()
 
 
+from flask import render_template
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
  # ------------------------ ROLE-BASED JWT AUTHORIZATION (DECORATOR) ---------------------------------
 
 def role_required(required_role):
@@ -817,15 +824,18 @@ def get_employee(emp_id):
 
 
 
-#Update Employee
+# =====================================================
+# UPDATE EMPLOYEE
+# =====================================================
+
 @app.route("/employees/<int:emp_id>", methods=["PUT"])
 @admin_required()
 def update_employee(emp_id):
 
     try:
 
-        # Search employee
-        employee = Employee.query.filter_by( Emp_ID=emp_id, IsDeleted="False").first()
+
+        employee = Employee.query.filter_by(  Emp_ID=emp_id,  IsDeleted="False").first()
 
         if employee is None:
             return jsonify({
@@ -833,13 +843,19 @@ def update_employee(emp_id):
                 "message": "Employee Not Found"
             }), 404
 
-        # Read form data
         print(request.form)
+
         data = update_schema.load(request.form)
-                 
-        # ================= Check Email =================
+
+
+        
+        # CHECK WHETHER USER IS ADMIN
+
+        is_admin = (   employee.role and   employee.role.Role_Name == "Admin"  )
+
 
         if data.get("Email"):
+
             existing = Employee.query.filter_by(
                 Email=data["Email"]
             ).first()
@@ -853,45 +869,67 @@ def update_employee(emp_id):
 
             employee.Email = data["Email"]
 
-        #  Update Fields
+        if data.get("Emp_Name") is not None:
+            employee.Emp_Name = data["Emp_Name"]
 
-        employee.Emp_Name = data.get("Emp_Name",employee.Emp_Name.strip())
+        if data.get("Designation") is not None:
+            employee.Designation = data["Designation"]
 
-        employee.Designation = data.get( "Designation", employee.Designation.strip() )
-
-        if data.get("Salary")is not None:
-            employee.Salary = data["Salary"]
-
-        employee.Employment_Status = data.get( "Employment_Status", employee.Employment_Status)
-
+        if data.get("Employment_Status") is not None:
+            employee.Employment_Status = data["Employment_Status"]
 
         if data.get("Hire_Date") is not None:
+            employee.Hire_Date = data["Hire_Date"]
 
-            employee.Hire_Date =  data["Hire_Date"]
-              
 
         if data.get("Password"):
+            employee.Password = generate_password_hash(
+                data["Password"]
+            )
+        if not is_admin:
 
-            employee.Password = generate_password_hash(data["Password"] )
+            # -----------------------------
+            # Salary
+            # -----------------------------
 
-        if data.get("Dept_ID") is not None:
+            if data.get("Salary") is not None:
 
-            department = db.session.get( Department,  int(data["Dept_ID"]) )
+                if data["Salary"] <= 0:
 
-            if not department:
+                    return jsonify({
+                        "success": False,
+                        "message": "Salary must be greater than 0"
+                    }), 400
 
-                return jsonify({
-                    "success": False,
-                    "message": "Department not found"
-                }), 404
+                employee.Salary = data["Salary"]
 
-            employee.Dept_ID = department.Dept_ID
 
-        #  Role
+            if data.get("Dept_ID") not in ( None, "",   0,   "0"):
+
+                department = db.session.get(Department,int(data["Dept_ID"]) )
+
+                if not department:
+
+                    return jsonify({
+                        "success": False,
+                        "message": "Department not found"
+                    }), 404
+
+                employee.Dept_ID = department.Dept_ID
+
+        # ADMIN ONLY
+        # NO DEPARTMENT + NO SALARY
+
+        else:
+
+            employee.Dept_ID = None
+            employee.Salary = 0
 
         if data.get("Role"):
-            
-            role = Role.query.filter_by( Role_Name=data["Role"] ).first()
+
+            role = Role.query.filter_by(
+                Role_Name=data["Role"]
+            ).first()
 
             if role is None:
 
@@ -902,6 +940,7 @@ def update_employee(emp_id):
 
             employee.Role_ID = role.Role_ID
 
+
         set_updated_audit(employee)
 
         create_activity_log(
@@ -910,7 +949,8 @@ def update_employee(emp_id):
             description=f"Employee '{employee.Emp_Name}' updated",
             emp_id=employee.Emp_ID,
             role_id=employee.Role_ID
-       )
+        )
+
         db.session.commit()
 
         return jsonify({
@@ -922,19 +962,48 @@ def update_employee(emp_id):
             "employee": {
 
                 "Emp_ID": employee.Emp_ID,
-                "Emp_Name": employee.Emp_Name,
-                "Email": employee.Email,
-                "Designation": employee.Designation ,
-                "Department": employee.department.Dept_Name if employee.department else None,
-                "Salary": float(employee.Salary),
-                "Hire_Date": employee.Hire_Date.strftime("%Y-%m-%d") if employee.Hire_Date else None,
-                "Role": employee.role.Role_Name if employee.role else None,
-                "Employment_Status": employee.Employment_Status,
-                
 
+                "Emp_Name": employee.Emp_Name,
+
+                "Email": employee.Email,
+
+                "Designation": employee.Designation,
+
+                "Department":
+                    employee.department.Dept_Name
+                    if employee.department
+                    else None,
+
+                "Salary":
+                    float(employee.Salary)
+                    if employee.Salary is not None
+                    else 0,
+
+                "Hire_Date":
+                    employee.Hire_Date.strftime("%Y-%m-%d")
+                    if employee.Hire_Date
+                    else None,
+
+                "Role":
+                    employee.role.Role_Name
+                    if employee.role
+                    else None,
+
+                "Employment_Status":
+                    employee.Employment_Status
             }
 
         }), 200
+
+
+    except ValidationError as err:
+
+        db.session.rollback()
+
+        return jsonify({
+            "success": False,
+            "errors": err.messages
+        }), 400
 
     except Exception as e:
 

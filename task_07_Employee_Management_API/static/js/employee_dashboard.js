@@ -1,6 +1,5 @@
-// =====================================================
+
 // EMPLOYEE DASHBOARD JS
-// =====================================================
 
 // ================= PAGE LOAD =================
 
@@ -43,34 +42,6 @@ async function loadEmployeeDashboard() {
 
         setText("welcomeName", emp.Emp_Name);
 
-        // =======================SIDEBAR USER==========================
-        
-
-        setText("topName", emp.Emp_Name);
-
-        const role = document.querySelector(".user small");
-
-        if (role) {
-
-            role.innerText = emp.Role || "Employee";
-
-        }
-
-        const topImage = document.querySelector(".user img");
-
-        if (topImage) {
-
-            topImage.src = emp.Profile_Image
-                ? "/static/uploads/" + emp.Profile_Image + "?t=" + Date.now()
-                : "/static/uploads/default.png";
-
-            topImage.onerror = function () {
-
-                this.src = "/static/uploads/default.png";
-
-            };
-
-        }
 
         // =======================STATISTICS==========================
         

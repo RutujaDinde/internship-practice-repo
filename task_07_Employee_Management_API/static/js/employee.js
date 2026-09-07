@@ -527,6 +527,8 @@ async function loadEmployees() {
 
                     </button>
 
+                     ${ emp.Role === "Employee" ? `
+
                     <button class="btn btn-warning btn-sm"
                         onclick="loadEmployee(${emp.Emp_ID})">
 
@@ -539,9 +541,12 @@ async function loadEmployees() {
 
                         <i class="fas fa-trash"></i>
 
-                    </button>
+                     </button>
+            `
+                        : ""
+                }
 
-                </td>
+            </td>
 
             </tr>
 

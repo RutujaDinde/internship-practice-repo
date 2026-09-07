@@ -45,9 +45,9 @@ class UpdateEmployeeSchema(Schema):
     Emp_Name = fields.String( validate=validate.Length(min=2, max=50))
     Email = fields.Email()
     Password = fields.String( validate=validate.Length(min=8) )
-    Salary = fields.Float(validate=validate.Range(min=1))
+    Salary = fields.Float(allow_none=True,validate=validate.Range(min=1))
     Designation = fields.String(validate=validate.Length(min=2) )
-    Dept_ID = fields.Int()
+    Dept_ID = fields.Int(allow_none=True,)
     Hire_Date = fields.Date()
     Role = fields.Str()
     Employment_Status = fields.String()
@@ -82,15 +82,15 @@ class ResetPasswordSchema(Schema):
 
     
 
-@validates_schema
-def validate_passwords(self, data, **kwargs):
+    @validates_schema
+    def validate_passwords(self, data, **kwargs):
 
-        if data["New_Password"] != data["Confirm_Password"]:
+            if data["New_Password"] != data["Confirm_Password"]:
 
-            raise ValidationError({
+                raise ValidationError({
 
-                "Confirm_Password": [
-                    "Passwords do not match."
-                ]
+                    "Confirm_Password": [
+                        "Passwords do not match."
+                    ]
 
-            })
+                })

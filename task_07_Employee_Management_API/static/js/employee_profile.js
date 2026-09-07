@@ -1,6 +1,5 @@
-// =====================================================
+
 // EMPLOYEE PROFILE + EDIT PROFILE
-// =====================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -97,53 +96,54 @@ async function loadEmployeeProfile() {
 
             };
 
+            
 
-            // ================= TOPBAR =================
 
-        const topName = document.getElementById("topName");
+//             // ================= TOPBAR =================
 
-        if (topName) {
+//         const topName = document.getElementById("topName");
 
-            topName.innerText = emp.Emp_Name;
+//         if (topName) {
 
-        }
+//             topName.innerText = emp.Emp_Name;
 
-        const topRole = document.querySelector(".user small");
+//         }
 
-        if (topRole) {
+//         const topRole = document.querySelector(".user small");
 
-            topRole.innerText = emp.Role || "Employee";
+//         if (topRole) {
 
-        }
+//             topRole.innerText = emp.Role || "Employee";
 
-            const topImage = document.querySelector(".user img");
+//         }
 
-            if (topImage) {
+//             const topImage = document.querySelector(".user img");
 
-                topImage.src = emp.Profile_Image
-                    ? "/static/uploads/" + emp.Profile_Image + "?t=" + Date.now()
-                    : "/static/uploads/default.png";
+//             if (topImage) {
 
-                topImage.onerror = function () {
+//                 topImage.src = emp.Profile_Image
+//                     ? "/static/uploads/" + emp.Profile_Image + "?t=" + Date.now()
+//                     : "/static/uploads/default.png";
 
-                    this.src = "/static/uploads/default.png";
+//                 topImage.onerror = function () {
 
-                };
+//                     this.src = "/static/uploads/default.png";
 
-            }
+//                 };
 
-        }
+//             }
 
-    }
+      }
 
-    catch (error) {
+  }
+
+  catch (error) {
 
         console.error("Profile Load Error:", error);
 
-    }
-
 }
 
+}
 
 // ========================= LOAD EDIT PROFILE============================
 

@@ -1,6 +1,5 @@
-// =====================================================
+
 // Department Management JS
-// =====================================================
 
 
 // ================= VARIABLES =================
@@ -186,6 +185,8 @@ ${dept.Total_Employees || 0}
 
 <td>
 
+<div class="d-flex align-items-center gap-2 flex-nowrap">
+
 <button class="btn btn-primary btn-sm"
 
 onclick="editDepartment(${dept.Dept_ID})">
@@ -201,6 +202,7 @@ onclick="deleteDepartment(${dept.Dept_ID})">
 <i class="fas fa-trash"></i>
 
 </button>
+</div>
 
 </td>
 
