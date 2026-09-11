@@ -1,0 +1,626 @@
+/* =====================================================
+   WELCOME
+===================================================== */
+
+.welcome-section {
+    margin: 24px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.welcome-section h2 {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.welcome-section p {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.date-box {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    padding: 10px 14px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    color: #4b5563;
+}
+
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+.stat-card {
+    background: #f0f1f0;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* Blue */
+
+.blue-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ebeef2,
+            #e3e8f6
+        );
+}
+
+
+/* Green */
+
+.green-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ebeef2,
+            #d2f7dc
+        );
+}
+
+
+/* Yellow */
+
+.yellow-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ebeef2,
+            #edf8d4
+        );
+}
+
+
+/* Red */
+
+.red-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ebeef2,
+            #f3d5d9
+        );
+}
+
+
+/* =====================================================
+   STAT ICON
+===================================================== */
+
+.stat-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 18px;
+
+    flex-shrink: 0;
+}
+
+
+.contracts-icon {
+    background: #c1cff7ec;
+}
+
+
+.approved-icon {
+    background: #aefcd0;
+}
+
+
+.users-icon {
+    background: #f9f984;
+}
+
+
+.review-icon {
+    background: #f3b6b6;
+}
+
+
+
+/* =====================================================
+   STAT CONTENT
+===================================================== */
+
+.stat-content span {
+    font-size: 15px;
+
+    color: #171718;
+}
+
+.stat-content h3 {
+
+    margin-top: 3px;
+
+    font-size: 23px;
+}
+
+.stat-content p {
+
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: #0a0a0b;
+}
+
+
+
+/* =====================================================
+   DASHBOARD CARDS
+===================================================== */
+
+.dashboard-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    padding: 20px;
+}
+
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.card-header h3 {
+
+    font-size: 15px;
+}
+
+
+.card-header p {
+
+    font-size: 11px;
+
+    color: #6b7280;
+
+    margin-top: 4px;
+}
+
+
+
+/* =====================================================
+   CHARTS
+===================================================== */
+
+.charts-grid {
+
+    margin-top: 20px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+
+
+/* =====================================================
+   DONUT
+===================================================== */
+
+.status-content {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.donut-chart {
+
+    width: 155px;
+
+    height: 155px;
+
+    border-radius: 50%;
+
+    background:
+
+        conic-gradient(
+
+            #1f2937 0deg 90deg,
+
+            #64748b 90deg 270deg,
+
+            #94a3b8 270deg 320deg,
+
+            #cbd5e1 320deg 360deg
+
+        );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+
+.donut-center {
+
+    width: 95px;
+
+    height: 95px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+}
+
+
+.donut-center strong {
+
+    font-size: 22px;
+}
+
+
+.donut-center span {
+
+    font-size: 10px;
+
+    color: #6b7280;
+}
+
+
+
+/* =====================================================
+   STATUS LIST
+===================================================== */
+
+.status-list {
+
+    flex: 1;
+}
+
+
+.status-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+    font-size: 11px;
+}
+
+
+.status-item span {
+
+    color: #4b5563;
+}
+
+
+.status-dot {
+
+    display: inline-block;
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    margin-right: 7px;
+}
+
+
+.draft {
+    background: #1f2937;
+}
+
+
+.active {
+    background: #64748b;
+}
+
+
+.expired {
+    background: #94a3b8;
+}
+
+
+.terminated {
+    background: #cbd5e1;
+}
+
+
+
+/* =====================================================
+   QUICK ACTIONS
+===================================================== */
+
+.quick-actions {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.quick-action {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    color: #1f2937;
+}
+
+
+.quick-action:hover {
+
+    background: #f8fafc;
+}
+
+
+.quick-action-icon {
+
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 7px;
+
+    background: #eef0f2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.quick-action div:nth-child(2) {
+
+    flex: 1;
+}
+
+
+.quick-action strong {
+
+    display: block;
+
+    font-size: 12px;
+}
+
+
+.quick-action span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 10px;
+
+    color: #6b7280;
+}
+
+
+.quick-action > i:last-child {
+
+    font-size: 10px;
+
+    color: #9ca3af;
+}
+
+
+
+/* =====================================================
+   RECENT CONTRACTS
+===================================================== */
+
+.recent-section {
+
+    margin-top: 20px;
+}
+
+
+.view-all {
+
+    color: #374151;
+
+    text-decoration: none;
+
+    font-size: 11px;
+}
+
+
+.view-all i {
+
+    margin-left: 5px;
+}
+
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-container {
+
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.data-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.data-table th {
+
+    text-align: left;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: #6b7280;
+
+    padding: 10px 12px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    white-space: nowrap;
+}
+
+
+.data-table td {
+
+    padding: 12px;
+
+    font-size: 11px;
+
+    color: #374151;
+
+    border-bottom: 1px solid #f1f1f1;
+
+    white-space: nowrap;
+}
+
+
+.data-table tbody tr:hover {
+
+    background: #f8fafc;
+}
+
+
+.empty-row {
+
+    text-align: center;
+
+    padding: 30px !important;
+
+    color: #9ca3af !important;
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .welcome-section {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    .status-content {
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+}

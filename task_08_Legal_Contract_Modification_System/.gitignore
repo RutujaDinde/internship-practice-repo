@@ -1,0 +1,9 @@
+env/
+__pycache__/
+*.pyc
+.env
+uploads/*
+routes/__pycache__/
+.env
+.env.*
+!.env.example

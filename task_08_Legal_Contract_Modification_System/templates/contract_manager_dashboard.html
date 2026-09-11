@@ -1,0 +1,494 @@
+
+{% extends "base.html" %}
+
+
+{% block title %}
+Contract Manager Dashboard | Legal Contract Management System
+{% endblock %}
+
+
+<!-- =====================================================
+contract manager DASHBOARD CSS
+===================================================== -->
+
+{% block extra_css %}
+
+<link rel="stylesheet"   href="{{ url_for('static', filename='css/contract_manager.css') }}">
+
+{% endblock %}
+
+
+<!-- =====================================================
+     PAGE HEADING
+===================================================== -->
+
+{% block page_heading %}
+
+<div>
+
+    <h1>Dashboard</h1>
+
+    <p>
+        Overview of your contracts and documents
+    </p>
+
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =====================================================
+     WELCOME
+===================================================== -->
+
+<section class="welcome-section">
+
+    <div>
+
+        <h2>
+            Welcome back, <span id="welcomeUserName">User</span> 👋
+        </h2>
+
+        <p>
+            Here's what's happening with your contracts today.
+        </p>
+
+    </div>
+
+
+    <div class="date-box">
+
+        <i class="fa-regular fa-calendar"></i>
+
+        <span id="currentDate"></span>
+
+    </div>
+
+</section>
+
+
+
+<!-- ====================  STATISTICS======================-->
+
+<section class="stats-grid">
+
+
+    <!-- My Contracts -->
+
+    <div class="stat-card blue-card">
+
+        <div class="stat-icon contracts-icon">
+
+            <i class="fa-solid fa-file-contract"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <span>My Contracts</span>
+
+            <h3 id="myContracts">0</h3>
+
+            <p>Contracts created by you</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Active Contracts -->
+
+    <div class="stat-card green-card">
+
+        <div class="stat-icon approved-icon">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <span>Active Contracts</span>
+
+            <h3 id="activeContracts">0</h3>
+
+            <p>Currently active</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Expiring Soon -->
+
+    <div class="stat-card yellow-card">
+
+        <div class="stat-icon users-icon">
+
+            <i class="fa-solid fa-folder-open"></i> 
+
+        </div>
+
+        <div class="stat-content">
+
+            <span>My Documents</span>
+
+            <h3 id="myDocuments">0</h3>
+
+            <p>Documents uploaded</p>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- My Documents -->
+
+    <div class="stat-card red-card">
+
+        <div class="stat-icon review-icon">
+
+            <i class="fa-solid fa-clock"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <span>Expiring Soon</span>
+
+            <h3 id="expiringContracts">0</h3>
+
+            <p>Requires attention</p>
+
+            
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CHARTS
+===================================================== -->
+
+<section class="charts-grid">
+
+
+    <!-- Contract Status -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>Contract Status</h3>
+
+                <p>Your contract status distribution</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="status-content">
+
+            <div class="donut-chart">
+
+                <div class="donut-center">
+
+                    <strong id="statusTotal">0</strong>
+
+                    <span>Contracts</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-list">
+
+
+                <!-- Draft -->
+
+                <div class="status-item">
+
+                    <span>
+
+                        <i class="status-dot draft"></i>
+
+                        Draft
+
+                    </span>
+
+                    <strong id="draftCount">0</strong>
+
+                </div>
+
+
+
+                <!-- Active -->
+
+                <div class="status-item">
+
+                    <span>
+
+                        <i class="status-dot active"></i>
+
+                        Active
+
+                    </span>
+
+                    <strong id="activeCount">0</strong>
+
+                </div>
+
+
+
+                <!-- Expired -->
+
+                <div class="status-item">
+
+                    <span>
+
+                        <i class="status-dot expired"></i>
+
+                        Expired
+
+                    </span>
+
+                    <strong id="expiredCount">0</strong>
+
+                </div>
+
+
+
+                <!-- Terminated -->
+
+                <div class="status-item">
+
+                    <span>
+
+                        <i class="status-dot terminated"></i>
+
+                        Terminated
+
+                    </span>
+
+                    <strong id="terminatedCount">0</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Quick Actions -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>Quick Actions</h3>
+
+                <p>Common contract actions</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+
+            <!-- Create Contract -->
+
+            <a href="{{ url_for('contracts.contracts_page') }}"
+               class="quick-action">
+
+                <div class="quick-action-icon">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>Create Contract</strong>
+
+                    <span>Create a new contract</span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </a>
+
+
+
+            <!-- View Contracts -->
+
+            <a href="{{ url_for('contracts.contracts_page') }}"
+               class="quick-action">
+
+                <div class="quick-action-icon">
+
+                    <i class="fa-solid fa-file-contract"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>View Contracts</strong>
+
+                    <span>Manage your contracts</span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </a>
+
+
+
+            <!-- Documents -->
+
+            <a href="{{ url_for('documents.documents_page') }}"
+               class="quick-action">
+
+                <div class="quick-action-icon">
+
+                    <i class="fa-solid fa-folder-open"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>View Documents</strong>
+
+                    <span>Manage your documents</span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RECENT CONTRACTS
+===================================================== -->
+
+<section class="dashboard-card recent-section">
+
+
+    <div class="card-header">
+
+        <div>
+
+            <h3>My Recent Contracts</h3>
+
+            <p>
+                Recently created or updated contracts
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('contracts.contracts_page') }}"
+           class="view-all">
+
+            View All
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="table-container">
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Contract</th>
+
+                    <th>Type</th>
+
+                    <th>Effective Date</th>
+
+                    <th>Expiry Date</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="recentContracts">
+
+                <tr>
+
+                    <td colspan="6"
+                        class="empty-row">
+
+                        No contracts available
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+
+<!-- =====================================================
+     USER DASHBOARD JAVASCRIPT
+===================================================== -->
+
+{% block extra_js %}
+
+<script src="{{ url_for('static',
+filename='js/contract_manager_dashboard.js') }}"></script>
+
+{% endblock %}
+

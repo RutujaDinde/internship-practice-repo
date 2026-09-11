@@ -1,0 +1,968 @@
+/* =========================================================
+   MODIFICATION REQUESTS
+========================================================= */
+
+/* ---------------------------------------------------------
+   SECTION HEADER
+--------------------------------------------------------- */
+
+#modificationsTab .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+#modificationsTab .section-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+#modificationsTab .section-subtitle {
+    margin: 5px 0 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* ---------------------------------------------------------
+   REQUEST MODIFICATION BUTTON
+--------------------------------------------------------- */
+
+#createModificationBtn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 9px 16px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+#createModificationBtn:hover {
+    background: #1d4ed8;
+}
+
+#createModificationBtn i {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MODIFICATION TABLE
+========================================================= */
+
+#modificationsTab .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+
+/* TABLE */
+
+#modificationsTab table {
+    width: 100%;
+    margin: 0;
+
+    border-collapse: collapse;
+
+    font-size: 14px;
+}
+
+
+/* HEADER */
+
+#modificationsTab table thead {
+    background: #f8fafc;
+}
+
+#modificationsTab table thead th {
+    padding: 13px 14px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    color: #374151;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+
+    white-space: nowrap;
+
+    text-align: left;
+}
+
+
+/* BODY */
+
+#modificationsTab table tbody td {
+    padding: 13px 14px;
+
+    border-bottom: 1px solid #f1f5f9;
+
+    color: #4b5563;
+
+    vertical-align: middle;
+}
+
+
+/* REMOVE LAST BORDER */
+
+#modificationsTab table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* HOVER */
+
+#modificationsTab table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* ID COLUMN */
+
+#modificationsTab table tbody td:first-child {
+    color: #111827;
+    font-weight: 600;
+}
+
+
+/* REASON */
+
+#modificationsTab table tbody td:nth-child(4) {
+    max-width: 220px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ACTION COLUMN */
+
+#modificationsTab table th:last-child,
+#modificationsTab table td:last-child {
+    white-space: nowrap;
+}
+
+
+/* EMPTY / LOADING ROW */
+
+#modificationsTab .text-center {
+    text-align: center;
+}
+
+#modificationsTab .empty-state,
+#modificationsTab .loading-state {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MODIFICATION STATUS
+========================================================= */
+
+.modification-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+.modification-status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.modification-status.approved {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.modification-status.rejected {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.modification-status.applied {
+    background: #cff4fc;
+    color: #055160;
+}
+
+
+/* =========================================================
+   MODIFICATION ACTION BUTTONS
+========================================================= */
+
+.modification-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+
+    background: #ffffff;
+    color: #374151;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    margin-right: 5px;
+
+    transition: all 0.2s ease;
+}
+
+.modification-action-btn:hover {
+    background: #f3f4f6;
+}
+
+.modification-action-btn.view {
+    color: #2563eb;
+    border-color: #bfdbfe;
+}
+
+.modification-action-btn.approve {
+    color: #15803d;
+    border-color: #bbf7d0;
+}
+
+.modification-action-btn.reject {
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.modification-action-btn.apply {
+    color: #7c3aed;
+    border-color: #ddd6fe;
+}
+
+.modification-action-btn.cancel {
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+
+/* =========================================================
+   MODIFICATION REQUEST MODAL
+========================================================= */
+
+#modificationModal {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    overflow-y: auto;
+}
+
+
+/* MODAL BOX */
+
+#modificationModal .modal-box {
+    width: 600px;
+    max-width: 100%;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.18);
+
+    animation: modificationModalOpen 0.2s ease;
+}
+
+
+/* ANIMATION */
+
+@keyframes modificationModalOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   MODAL HEADER
+--------------------------------------------------------- */
+
+#modificationModal .modal-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 22px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    background: #ffffff;
+}
+
+#modificationModal .modal-header h2 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    color: #111827;
+}
+
+
+/* CLOSE BUTTON */
+
+#modificationModal .modal-close {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #6b7280;
+
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+#modificationModal .modal-close:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+
+/* ---------------------------------------------------------
+   FORM
+--------------------------------------------------------- */
+
+#modificationModal #modificationForm {
+    padding: 22px;
+}
+
+
+/* FORM GROUP */
+
+#modificationModal .form-group {
+    margin-bottom: 17px;
+}
+
+
+/* LABEL */
+
+#modificationModal .form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* SELECT */
+
+#modificationModal .form-group select {
+    width: 100%;
+    height: 42px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+#modificationModal .form-group select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* TEXTAREA */
+
+#modificationModal .form-group textarea {
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    outline: none;
+
+    resize: vertical;
+
+    box-sizing: border-box;
+}
+
+#modificationModal .form-group textarea:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* READONLY ORIGINAL VALUE */
+
+#modificationModal #modificationOldText {
+    background: #f8fafc;
+
+    color: #6b7280;
+
+    cursor: not-allowed;
+}
+
+
+/* CLAUSE GROUP */
+
+#modificationClauseGroup {
+    transition: all 0.2s ease;
+}
+
+
+/* ---------------------------------------------------------
+   MODAL FOOTER
+--------------------------------------------------------- */
+
+#modificationModal .modal-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 5px;
+}
+
+
+/* CANCEL */
+
+#modificationModal .modal-secondary-btn {
+    padding: 9px 16px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+#modificationModal .modal-secondary-btn:hover {
+    background: #f3f4f6;
+}
+
+
+/* SUBMIT */
+
+#modificationModal .modal-primary-btn {
+    padding: 9px 17px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+#modificationModal .modal-primary-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================================================
+   MODIFICATION DETAILS / COMPARISON
+========================================================= */
+
+.modification-details {
+    padding: 5px 0;
+}
+
+.modification-detail-row {
+    display: flex;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modification-detail-label {
+    width: 150px;
+
+    flex-shrink: 0;
+
+    color: #6b7280;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.modification-detail-value {
+    color: #111827;
+
+    font-size: 14px;
+}
+
+
+.modification-comparison {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 15px;
+}
+
+.modification-comparison-box {
+    padding: 14px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 7px;
+
+    background: #f8fafc;
+}
+
+.modification-comparison-box h4 {
+    margin: 0 0 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.modification-comparison-box p {
+    margin: 0;
+
+    white-space: pre-wrap;
+
+    color: #374151;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    #modificationsTab .section-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    #createModificationBtn {
+        width: 100%;
+    }
+
+    #modificationModal {
+        padding: 10px;
+    }
+
+    #modificationModal .modal-box {
+        width: 100%;
+        max-height: 95vh;
+    }
+
+    #modificationModal #modificationForm {
+        padding: 16px;
+    }
+
+    #modificationsTab table {
+        min-width: 850px;
+    }
+
+    .modification-comparison {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* ============================================================
+   MODIFICATION VIEW
+   ============================================================ */
+
+.modification-view-modal {
+    width: 700px;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modification-view-content {
+    padding: 5px 0;
+}
+
+.modification-view-row {
+    display: flex;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.modification-view-label {
+    width: 170px;
+    min-width: 170px;
+    font-weight: 600;
+    color: #555;
+}
+
+.modification-view-value {
+    flex: 1;
+    color: #222;
+}
+
+.modification-view-section {
+    margin-top: 20px;
+}
+
+.modification-view-section
+.modification-view-label {
+    width: auto;
+    margin-bottom: 8px;
+}
+
+.modification-text-box {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 14px;
+    background: #f8f9fa;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.6;
+    color: #333;
+}
+/* =====================================================
+   MODIFICATION VIEW MODAL
+===================================================== */
+
+#modificationViewModal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+}
+
+
+/* Modal box */
+
+#modificationViewModal .modification-view-modal {
+    width: 700px;
+    max-width: 95%;
+    max-height: 90vh;
+
+    background: #ffffff;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Header */
+
+#modificationViewModal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 22px;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#modificationViewModal .modal-header h2 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    color: #222;
+}
+
+
+/* Close button */
+
+#modificationViewModal .modal-close {
+    border: none;
+    background: transparent;
+
+    font-size: 28px;
+    line-height: 1;
+
+    color: #666;
+
+    cursor: pointer;
+}
+
+#modificationViewModal .modal-close:hover {
+    color: #222;
+}
+
+
+/* Body */
+
+#modificationViewModal .modal-body {
+    padding: 22px;
+
+    overflow-y: auto;
+}
+
+
+/* Footer */
+
+#modificationViewModal .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    padding: 15px 22px;
+
+    border-top: 1px solid #e5e5e5;
+}
+
+
+/* Content */
+
+#modificationViewModal .modification-view-content {
+    width: 100%;
+}
+
+
+/* Normal information row */
+
+#modificationViewModal .modification-view-row {
+    display: flex;
+    gap: 20px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+#modificationViewModal .modification-view-label {
+    width: 170px;
+    min-width: 170px;
+
+    font-weight: 600;
+    color: #555;
+}
+
+#modificationViewModal .modification-view-value {
+    flex: 1;
+
+    color: #222;
+
+    word-break: break-word;
+}
+
+
+/* Text sections */
+
+#modificationViewModal .modification-view-section {
+    margin-top: 20px;
+}
+
+#modificationViewModal
+.modification-view-section
+.modification-view-label {
+    width: auto;
+    min-width: auto;
+
+    margin-bottom: 8px;
+}
+
+
+/* Original / Proposed text */
+
+#modificationViewModal .modification-text-box {
+    width: 100%;
+
+    min-height: 90px;
+
+    padding: 12px 14px;
+
+    background: #f8f9fa;
+
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    line-height: 1.6;
+
+    color: #333;
+
+    box-sizing: border-box;
+}
+
+
+/* Status */
+
+#modificationViewModal .modification-status {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    #modificationViewModal
+    .modification-view-modal {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    #modificationViewModal
+    .modification-view-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #modificationViewModal
+    .modification-view-label {
+        width: auto;
+        min-width: auto;
+    }
+
+}
+

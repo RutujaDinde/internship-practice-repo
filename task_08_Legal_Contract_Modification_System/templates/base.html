@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Legal Contract Management System
+        {% endblock %}
+    </title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+
+    <!-- Base CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/base.css') }}">
+
+    <!-- Page Specific CSS -->
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="sidebar">
+
+    <!-- LOGO -->
+    <div class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+
+        <div class="logo-text">
+            <h2>LCMS</h2>
+            <span>Legal Management</span>
+        </div>
+
+    </div>
+
+
+    <!-- ================= NAVIGATION ================= -->
+    <nav class="navigation">
+
+        <!-- ================= MAIN ================= -->
+        <p class="menu-title">MAIN</p>
+
+
+        <!-- DASHBOARD -->
+
+        {% if current_role == "Admin" %}
+
+        <a href="{{ url_for('user.admin_dashboard_page') }}"
+           class="nav-item {% if request.endpoint == 'user.admin_dashboard_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+
+        </a>
+
+        {% elif current_role == "Contract Manager" %}
+
+        <a href="{{ url_for('user.contract_manager_dashboard') }}"
+           class="nav-item {% if request.endpoint == 'user.contract_manager_dashboard' %}active{% endif %}">
+
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+
+        </a>
+
+        {% elif current_role == "Legal User" %}
+
+        <a href="{{ url_for('user.user_dashboard') }}"
+           class="nav-item {% if request.endpoint == 'user.user_dashboard' %}active{% endif %}"">
+
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+
+        </a>
+
+        {% elif current_role == "Approver" %}
+
+        <a href="#"
+           class="nav-item">
+
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+
+        </a>
+
+        {% endif %}
+
+
+        <!-- ================= ADMIN MANAGEMENT ================= -->
+
+        {% if current_role == "Admin" %}
+
+        <p class="menu-title">MANAGEMENT</p>
+
+
+        <!-- DOCUMENTS -->
+        <a href="{{ url_for('documents.documents_page') }}"
+        class="nav-item {% if request.endpoint == 'documents.documents_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-folder-open"></i>
+            <span>Documents</span>
+
+        </a>
+
+        <!-- CONTRACTS -->
+        <a href="{{ url_for('contracts.contracts_page') }}"
+        class="nav-item {% if request.endpoint == 'contracts.contracts_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-file-contract"></i>
+            <span>Contracts</span>
+
+        </a>
+
+
+
+        <!-- USERS -->
+        <a href="{{ url_for('user.users_page') }}"
+           class="nav-item {% if request.endpoint == 'user.users_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-users"></i>
+            <span>Users</span>
+
+        </a>
+
+
+        <!-- ROLES -->
+        <a href="{{ url_for('role.roles_page') }}"
+           class="nav-item {% if request.endpoint == 'role.roles_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-user-shield"></i>
+            <span>Roles</span>
+
+        </a>
+
+
+        <!-- CONTRACT TYPES -->
+        <a href="{{ url_for('contract_type.contract_types_page') }}"
+           class="nav-item {% if request.endpoint == 'contract_type.contract_types_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Contract Types</span>
+
+        </a>
+
+        {% endif %}
+
+
+
+        {% if current_role == "Contract Manager" %}
+
+        <p class="menu-title">CONTRACT MANAGEMENT</p>
+
+        <!-- CONTRACTS -->
+        <a href="{{ url_for('contracts.contracts_page') }}"
+        class="nav-item {% if request.endpoint == 'contracts.contracts_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-file-contract"></i>
+            <span>Contracts</span>
+
+        </a>
+
+        <!-- DOCUMENTS -->
+        <a href="{{ url_for('documents.documents_page') }}"
+        class="nav-item {% if request.endpoint == 'documents.documents_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-folder-open"></i>
+            <span>Documents</span>
+
+        </a>
+
+        {% endif %}
+
+
+         {% if current_role == "Legal User" %}
+
+        <p class="menu-title">CONTRACT MANAGEMENT</p>
+
+        <!-- CONTRACTS -->
+        <a href="{{ url_for('contracts.contracts_page') }}"
+        class="nav-item {% if request.endpoint == 'contracts.contracts_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-file-contract"></i>
+            <span>Contracts</span>
+
+        </a>
+
+        <!-- DOCUMENTS -->
+        <a href="{{ url_for('documents.documents_page') }}"
+        class="nav-item {% if request.endpoint == 'documents.documents_page' %}active{% endif %}">
+
+            <i class="fa-solid fa-folder-open"></i>
+            <span>Documents</span>
+
+        </a>
+
+        {% endif %}
+
+
+
+        <!-- ================= SYSTEM ================= -->
+
+        <p class="menu-title">SYSTEM</p>
+
+
+        <!-- ACTIVITY HISTORY -->
+        <a href="#"
+           class="nav-item">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Activity History</span>
+
+        </a>
+
+
+        <!-- SETTINGS -->
+        <a href="#"
+           class="nav-item">
+
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- ================= LOGOUT ================= -->
+
+    <div class="sidebar-bottom">
+
+        <button type="button"
+                class="logout-btn"
+                id="logoutBtn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="main-content">
+
+
+    <!-- ================= TOP HEADER ================= -->
+
+    <header class="top-header">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            {% block page_heading %}
+
+            <h1>Legal Contract Management System</h1>
+
+            {% endblock %}
+
+        </div>
+
+
+        <!-- ================= HEADER RIGHT ================= -->
+
+        <div class="header-right">
+
+
+            <!-- NOTIFICATION -->
+
+            <button type="button"
+                    class="notification-btn">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span class="notification-dot"></span>
+
+            </button>
+
+
+            <!-- PROFILE -->
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong id="headerUserName">
+                        User
+                    </strong>
+
+                    <span id="headerUserRole">
+                        User
+                    </span>
+
+                </div>
+
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= PAGE CONTENT ================= -->
+
+    <div class="page-content">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+</main>
+
+
+<!-- ================= BASE JAVASCRIPT ================= -->
+
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+
+
+
+<!-- ================= PAGE SPECIFIC JAVASCRIPT ================= -->
+
+{% block extra_js %}
+
+{% endblock %}
+
+
+</body>
+</html>

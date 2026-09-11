@@ -1,0 +1,203 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Roles | Legal Contract Management System
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link rel="stylesheet"  href="{{ url_for('static', filename='css/roles.css') }}">
+
+{% endblock %}
+
+
+<!-- ==PAGE HEADING==-->
+   
+{% block page_heading %}
+
+<div>
+    <h1>Roles</h1>
+
+    <p>
+        Manage system roles
+    </p>
+</div>
+
+{% endblock %}
+
+
+<!-- == PAGE CONTENT ==-->
+
+{% block content %}
+
+<section class="roles-page">
+
+    <!-- ==PAGE HEADER== -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Roles</h2>
+
+            <p>    View and manage roles available in the system.  </p>
+
+        </div>
+
+        <!-- CREATE ROLE BUTTON -->
+
+        <button type="button" class="btn-primary" id="createRoleBtn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Create Role
+
+        </button>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div  id="roleMessage"  class="role-message"> </div>
+
+
+<!-- ==TABLE==-->
+
+    <div class="table-card">
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Role Name</th>
+
+                    <th>Description </th>
+
+                    <th>Actions </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="rolesTableBody">
+
+                <tr>
+
+                    <td colspan="4" class="empty-row">
+                      Loading roles...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ==CREATE / EDIT ROLE MODAL== -->
+
+<div class="modal-overlay"id="roleModal">
+    <div class="role-modal">
+
+
+        <!-- MODAL HEADER-->
+
+        <div class="role-modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Create Role
+                </h2>
+
+                <p id="modalSubtitle">
+                    Add a new role to the system.
+                </p>
+
+            </div>
+            <button type="button" class="close-modal" id="closeRoleModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+
+        <!-- ==ROLE FORM== -->
+
+        <form id="roleForm">
+
+
+            <!-- ROLE NAME -->
+
+            <div class="form-group">
+
+                <label for="roleName">  Role Name </label>
+
+                <input  type="text"  id="roleName"  name="Role_Name"  placeholder="Enter role name"  required>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="roleDescription">  Description </label>
+
+                <textarea  id="roleDescription"  name="Description"  rows="4"  placeholder="Enter role description"></textarea>
+
+            </div>
+
+
+            <!-- FORM MESSAGE -->
+
+            <div   id="formMessage"   class="form-message"></div>
+
+
+            <!-- MODAL BUTTONS -->
+
+            <div class="modal-actions">
+
+                <button type="button" class="cancel-btn" id="cancelRole"> Cancel</button>
+
+
+                <button  type="submit"  class="save-role-btn"  id="saveRoleBtn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Create Role
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+<!-- == PAGE JAVASCRIPT==-->
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for('static', filename='js/roles.js') }}">
+</script>
+
+{% endblock %}
+

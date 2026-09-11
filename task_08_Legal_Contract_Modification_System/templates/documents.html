@@ -1,0 +1,714 @@
+{% extends "base.html" %}
+
+{% block title %}
+Documents | Legal Contract Management System
+{% endblock %}
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/documents.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="documents-page">
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ===================================================== -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Documents
+            </h2>
+
+            <p>
+                Manage documents uploaded for contracts
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="openUploadBtn"
+            class="btn-upload"
+            onclick="openUploadModal()">
+
+            <i class="fa-solid fa-upload"></i>
+
+            Upload Document
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FILTERS
+    ===================================================== -->
+
+    <div class="filter-card">
+
+
+        <!-- SEARCH -->
+
+        <div class="filter-group search-group">
+
+            <label>
+                Search
+            </label>
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search documents..."
+                    autocomplete="off">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CONTRACT TYPE -->
+
+        <div class="filter-group">
+
+            <label>
+                Contract Type
+            </label>
+
+            <select id="contractTypeFilter">
+
+                <option value="">
+                    All Contract Types
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- DOCUMENT TYPE -->
+
+        <div class="filter-group">
+
+            <label>
+                Type
+            </label>
+
+            <select id="typeFilter">
+
+                <option value="">
+                    All Types
+                </option>
+
+                <option value="PDF">
+                    PDF
+                </option>
+
+                <option value="DOCX">
+                    DOCX
+                </option>
+
+                <option value="TXT">
+                    TXT
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- STATUS -->
+
+        <div class="filter-group">
+
+            <label>
+                Status
+            </label>
+
+            <select id="statusFilter">
+
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="Active">
+                    Active
+                </option>
+
+                <option value="Archived">
+                    Archived
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- RESET -->
+
+        <button
+            type="button"
+            class="btn-reset"
+            onclick="resetFilters()">
+
+            <i class="fa-solid fa-rotate-left"></i>
+
+            Reset
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DOCUMENT CARD
+    ===================================================== -->
+
+    <div class="document-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+
+                    All Documents
+
+                    <span
+                        id="documentCount"
+                        class="count-badge">
+                        0
+                    </span>
+
+                </h3>
+
+                <p>
+                    Documents uploaded for all contracts
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DOCUMENT TABLE
+        ================================================= -->
+
+        <div class="table-wrapper">
+
+            <table class="documents-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Contract
+                        </th>
+
+                        <th>
+                            Document Name
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Created
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="documentsTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="loading-row">
+
+                            Loading documents...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================= -->
+
+        <div
+            id="emptyState"
+            class="empty-state"
+            style="display:none;">
+
+            <div class="empty-icon">
+
+                <i class="fa-regular fa-file-lines"></i>
+
+            </div>
+
+            <h4>
+                No documents found
+            </h4>
+
+            <p>
+                No documents match your current filters.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PAGINATION
+        ================================================= -->
+
+        <div class="pagination-container">
+
+            <div
+                id="paginationInfo"
+                class="pagination-info">
+            </div>
+
+            <div
+                id="pagination"
+                class="pagination">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     UPLOAD DOCUMENT MODAL
+========================================================= -->
+
+<div
+    id="uploadDocumentModal"
+    class="custom-modal">
+
+
+    <!-- MODAL OVERLAY -->
+
+    <div
+        class="custom-modal-overlay"
+        onclick="closeUploadModal()">
+    </div>
+
+
+
+    <!-- MODAL BOX -->
+
+    <div class="custom-modal-box">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="custom-modal-header">
+
+            <div>
+
+                <h5>
+
+                    <i class="fa-solid fa-upload"></i>
+
+                    Upload Document
+
+                </h5>
+
+                <p>
+                    Upload a document for a contract
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="closeUploadModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- UPLOAD FORM -->
+
+        <form id="uploadDocumentForm">
+
+
+            <div class="custom-modal-body">
+
+
+                <!-- =================================================
+                     CONTRACT SEARCH
+                ================================================= -->
+
+                <div class="form-group contract-search-container">
+
+                    <label for="uploadContractSearch">
+
+                        Contract
+                        <span>*</span>
+
+                    </label>
+
+
+                    <!-- SEARCH INPUT -->
+
+                    <input
+                        type="text"
+                        id="uploadContractSearch"
+                        placeholder="Search contract name..."
+                        autocomplete="off"
+                        required>
+
+
+                    <!-- SELECTED CONTRACT ID -->
+
+                    <input
+                        type="hidden"
+                        id="uploadContractId"
+                        name="Contract_ID">
+
+
+                    <!-- SEARCH RESULTS -->
+
+                    <div
+                        id="contractSearchResults"
+                        class="contract-search-results"
+                        style="display: none;">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DOCUMENT NAME
+                ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="documentName">
+
+                        Document Name
+                        <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="documentName"
+                        name="Document_Name"
+                        maxlength="200"
+                        placeholder="Enter document name"
+                        required>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DOCUMENT FILE
+                ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="documentFile">
+
+                        Document File
+                        <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="documentFile"
+                        name="file"
+                        accept=".pdf,.docx,.txt"
+                        required>
+
+
+                    <small>
+                        Allowed files: PDF, DOCX and TXT
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MODAL FOOTER
+            ================================================= -->
+
+            <div class="custom-modal-footer">
+
+
+                <button
+                    type="button"
+                    class="btn-secondary-custom"
+                    onclick="closeUploadModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary-custom"
+                    id="uploadButton">
+
+                    <i class="fa-solid fa-upload"></i>
+
+                    Upload Document
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     EDIT DOCUMENT MODAL
+========================================================= -->
+
+<div
+    id="editDocumentModal"
+    class="custom-modal">
+
+
+    <!-- MODAL OVERLAY -->
+
+    <div
+        class="custom-modal-overlay"
+        onclick="closeEditModal()">
+    </div>
+
+
+
+    <!-- MODAL BOX -->
+
+    <div class="custom-modal-box">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="custom-modal-header">
+
+            <div>
+
+                <h5>
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Edit Document
+
+                </h5>
+
+                <p>
+                    Update document information
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="closeEditModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- EDIT FORM -->
+
+        <form id="editDocumentForm">
+
+
+            <div class="custom-modal-body">
+
+
+                <!-- DOCUMENT ID -->
+
+                <input
+                    type="hidden"
+                    id="editDocumentId">
+
+
+
+                <!-- DOCUMENT NAME -->
+
+                <div class="form-group">
+
+                    <label for="editDocumentName">
+
+                        Document Name
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="editDocumentName"
+                        maxlength="200"
+                        required>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label for="editDocumentStatus">
+
+                        Status
+
+                    </label>
+
+
+                    <select id="editDocumentStatus">
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Archived">
+                            Archived
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- MODAL FOOTER -->
+
+            <div class="custom-modal-footer">
+
+
+                <button
+                    type="button"
+                    class="btn-secondary-custom"
+                    onclick="closeEditModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary-custom">
+
+                    Save Changes
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for('static', filename='js/documents.js') }}">
+</script>
+
+{% endblock %}

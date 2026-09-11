@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Legal Contract Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/login.css') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Background Overlay -->
+    <div class="background-overlay"></div>
+
+    <main class="login-wrapper">
+
+        <!-- Login Card -->
+        <section class="login-card">
+
+             <div class="login-logo">
+            <i class="fa-solid fa-scale-balanced"></i>
+             </div>
+
+            <div class="login-header">
+                <h2>Welcome back</h2>
+                <p>Sign in to your account to continue</p>
+            </div>
+
+
+            <!-- Flask Login Form -->
+            <form id="loginForm">
+
+                <!-- Email -->
+                <div class="form-group">
+
+                    <label for="email">Email</label>
+
+                    <div class="input-box">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            required
+                            autocomplete="new-password"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+
+                    <div class="password-label">
+
+                        <label for="password">Password</label>
+
+                        <a href="#">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="••••••••"
+                            required
+                            autocomplete="new-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()">
+
+                         <i class="fa-regular fa-eye"
+                               id="eyeIcon"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Remember Me -->
+                <div class="remember-row">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
+
+                        <span>Remember me</span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Sign In -->
+                <button type="submit"
+                        class="login-btn">
+
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    Sign In
+
+                </button>
+
+                <!-- Account -->
+                <div class="account-text">
+
+                    <span>Don't have an account?</span>
+
+                    <a href="#">
+                        Contact your administrator
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+
+            <p>
+                <i class="fa-solid fa-shield-halved"></i>
+                Secure. Compliant. Confidential.
+            </p>
+
+            <span>
+                © 2026 Legal Contract Document Management System
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>

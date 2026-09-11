@@ -1,0 +1,379 @@
+
+{% extends "base.html" %}
+
+
+{% block title %}
+Admin | Legal Contract Management System
+{% endblock %}
+
+<!-- =====================================================
+     ROLE PAGE CSS
+===================================================== -->
+
+{% block extra_css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+
+{% endblock %}
+
+<!--==PAGE HEADING== -->
+
+{% block page_heading %}
+
+<div>
+
+    <h1>Dashboard</h1>
+
+    <p>
+        Overview of your legal contract system
+    </p>
+
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+
+    <!--  WELCOME -->
+
+    <section class="welcome-section">
+
+        <div>
+
+            <h2>Welcome back, Admin 👋</h2>
+
+            <p>
+                Here's what's happening with your contracts today.
+            </p>
+
+        </div>
+
+        <div class="date-box">
+
+            <i class="fa-regular fa-calendar"></i>
+
+            <span id="currentDate"></span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==STATISTICS== -->
+
+    <section class="stats-grid ">
+
+         <!-- Users -->
+
+        <div class="stat-card yellow-card">
+
+            <div class="stat-icon users-icon">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+            <div class="stat-content">
+
+                <span>Total Users</span>
+
+                <h3 id="totalUsers">0</h3>
+
+                <p>Registered users</p>
+
+            </div>
+        </div>
+
+
+        <!-- Total Contracts -->
+
+        <div class="stat-card blue-card">
+
+            <div class="stat-icon contracts-icon">
+
+                <i class="fa-solid fa-file-contract"></i>
+
+            </div>
+
+            <div class="stat-content">
+
+                <span>Total Contracts</span>
+
+                <h3 id="totalContracts">0</h3>
+
+                <p>
+                    <i class="fa-solid fa-arrow-up"></i>
+                    All contracts
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Approved -->
+
+        <div class="stat-card green-card">
+
+            <div class="stat-icon approved-icon">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div class="stat-content">
+
+                <span>Contract Types</span>
+
+                <h3 id="contracttypes">0</h3>
+
+                <p>All Contract Types</p>
+
+            </div>
+          </div>
+
+
+
+        <!-- Pending Review -->
+
+        <div class="stat-card  red-card">
+
+            <div class="stat-icon review-icon">
+
+                <i class="fa-solid fa-file-circle-exclamation"></i>
+
+            </div>
+
+            <div class="stat-content ">
+
+                <span>Pending Approval</span>
+
+                <h3 id="pendingApproval">0</h3>
+
+                <p>Awaiting Approval</p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==CHARTS== -->
+
+    <section class="charts-grid">
+
+
+        <!-- Contract Type Overview -->
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>Contracts by Type</h3>
+
+                    <p>Number of contracts for each contract type</p>
+
+                </div>
+
+           </div>
+
+
+           <div class="contract-type-chart" id="contractTypeChart"></div>
+
+     </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>Contract Status</h3>
+
+                    <p>Current contract distribution</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-content">
+
+                <div class="donut-chart">
+
+                    <div class="donut-center">
+
+                        <strong id="statusTotal">0</strong>
+
+                        <span>Contracts</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="status-list">
+
+                    <div class="status-item">
+
+                        <span>
+                            <i class="status-dot draft"></i>
+                            Draft
+                        </span>
+
+                        <strong id="draftCount">0</strong>
+
+                    </div>
+
+
+                    <div class="status-item">
+
+                        <span>
+                            <i class="status-dot review"></i>
+                            Under Review
+                        </span>
+
+                        <strong id="reviewCount">0</strong>
+
+                    </div>
+
+
+                    <div class="status-item">
+
+                        <span>
+                            <i class="status-dot approval"></i>
+                            Pending Approval
+                        </span>
+
+                        <strong id="approvalCount">0</strong>
+
+                    </div>
+
+
+                    <div class="status-item">
+
+                        <span>
+                            <i class="status-dot approved"></i>
+                            Approved
+                        </span>
+
+                        <strong id="approvedCount">0</strong>
+
+                    </div>
+
+
+                    <div class="status-item">
+
+                        <span>
+                            <i class="status-dot rejected"></i>
+                            Rejected
+                        </span>
+
+                        <strong id="rejectedCount">0</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- == RECENT CONTRACTS== -->
+
+    <!-- <section class="dashboard-card recent-section">
+
+
+    <div class="card-header">
+
+        <div>
+
+            <h3>My Recent Contracts</h3>
+
+            <p>
+                Recently Added User
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('contracts.contracts_page') }}"
+           class="view-all">
+
+            View All
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Contract</th>
+
+                        <th>Type</th>
+
+                        <th>Created By</th>
+
+                        <th>Status</th>
+
+                        <th>Created Date</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="recentContracts">
+
+                    <tr>
+
+                        <td colspan="6"
+                            class="empty-row">
+
+                            No contracts available
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+ -->
+
+</main>
+{% endblock %}
+
+{% block extra_js %}
+
+
+<script src="{{ url_for('static', filename='js/admin_dashboard.js') }}"></script>
+
+{% endblock %}
+

@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contract Types | Legal Contract Management System
+{% endblock %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contract_types.css') }}">
+{% endblock %}
+
+
+<!-- ==PAGE HEADING==-->
+{% block page_heading %}
+<div>
+    <h1>Contract Types</h1>
+    <p>
+        Manage system contract types
+    </p>
+</div>
+{% endblock %}
+
+
+<!-- == PAGE CONTENT ==-->
+{% block content %}
+<section class="contract-type-page">
+
+    <!-- ==PAGE HEADER== -->
+    <div class="page-header">
+        <div>
+            <h2>Contract Types</h2>
+            <p>View and manage contract types available in the system.</p>
+        </div>
+
+
+        <!-- CREATE CONTRACT TYPE BUTTON -->
+        <button type="button" class="btn-primary" id="createContractTypeBtn">
+            <i class="fa-solid fa-plus"></i>
+            Create Contract Type
+        </button>
+    </div>
+
+         
+
+        <div class="contract-type-toolbar">
+
+            <div class="contract-type-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="searchContractType"
+                    placeholder="Search contract types..."
+                >
+            </div>
+
+        </div>
+
+
+
+    <!-- MESSAGE -->
+    <div id="contractTypeMessage" class="contract-type-message"></div>
+
+
+    <!-- ==TABLE==-->
+    <div class="table-card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Contract Type ID</th>
+                    <th>Contract Type Name</th>
+                    <th>Description</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="contractTypesTableBody">
+                <tr>
+                    <td colspan="5" class="empty-row">
+                      Loading contract types...
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+<!-- ==CREATE / EDIT CONTRACT TYPE MODAL== -->
+<div class="modal-overlay" id="contractTypeModal">
+    <div class="contract-type-modal">
+
+        <!-- MODAL HEADER-->
+        <div class="contract-type-modal-header">
+            <div>
+                <h2 id="modalTitle">
+                    Create Contract Type
+                </h2>
+                <p id="modalSubtitle">
+                    Add a new contract type to the system.
+                </p>
+            </div>
+            <button type="button" class="close-modal" id="closeContractTypeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+
+        <!-- ==CONTRACT TYPE FORM== -->
+        <form id="contractTypeForm">
+
+            <!-- CONTRACT TYPE NAME -->
+            <div class="form-group">
+                <label for="contractTypeName">Contract Type Name</label>
+                <input type="text" id="contractTypeName" name="Contract_Type_Name" placeholder="Enter contract type name" required>
+            </div>
+
+
+            <!-- DESCRIPTION -->
+            <div class="form-group">
+                <label for="contractTypeDescription">Description</label>
+                <textarea id="contractTypeDescription" name="Description" rows="4" placeholder="Enter contract type description"></textarea>
+            </div>
+
+
+            <!-- FORM MESSAGE -->
+            <div id="formMessage" class="form-message"></div>
+
+
+            <!-- MODAL BUTTONS -->
+            <div class="modal-actions">
+                <button type="button" class="cancel-btn" id="cancelContractType">Cancel</button>
+
+                <button type="submit" class="save-contract-type-btn" id="saveContractTypeBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    Create Contract Type
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+
+<!-- == PAGE JAVASCRIPT==-->
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/contract_types.js') }}"></script>
+{% endblock %}

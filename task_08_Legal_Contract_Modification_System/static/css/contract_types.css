@@ -1,0 +1,459 @@
+.contract-type-page {
+    width: 100%;
+}
+
+/* =====================================================
+   CONTRACT TYPE TOOLBAR
+===================================================== */
+
+.contract-type-toolbar {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+    padding: 15px;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =====================================================
+   CONTRACT TYPE SEARCH
+===================================================== */
+
+.contract-type-search {
+
+    position: relative;
+
+    width: 30%;
+}
+
+
+.contract-type-search i {
+
+    position: absolute;
+
+    left: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #98a2b3;
+
+    font-size: 13px;
+}
+
+
+.contract-type-search input {
+
+    width: 100%;
+
+    height: 38px;
+
+    box-sizing: border-box;
+
+    padding: 0 12px 0 35px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    color: #344054;
+
+    background: #ffffff;
+}
+
+
+.contract-type-search input:focus {
+
+    border-color: #52657a;
+
+    box-shadow:
+        0 0 0 3px rgba(82, 101, 122, 0.10);
+}
+
+
+.contract-type-search input::placeholder {
+
+    color: #98a2b3;
+}
+
+
+/* =====================================================
+   CONTRACT TYPE MESSAGE
+===================================================== */
+
+.contract-type-message {
+    display: none;
+    margin-bottom: 15px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.contract-type-message.success {
+    display: block;
+    background: #eaf7ee;
+    color: #218838;
+}
+
+.contract-type-message.error {
+    display: block;
+    background: #fff0f0;
+    color: #dc3545;
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.edit-contract-type-btn,
+.delete-contract-type-btn {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.edit-contract-type-btn {
+    border: 1px solid #dbe2ea;
+    background: #f0f4ff;
+    color: #475467;
+}
+
+.edit-contract-type-btn:hover {
+    background: #e5ecff;
+}
+
+.delete-contract-type-btn {
+    border: 1px solid #f1d4d4;
+    background: #fff0f0;
+    color: #c0392b;
+}
+
+.delete-contract-type-btn:hover {
+    background: #ffe1e1;
+}
+
+
+/* =====================================================
+   CONTRACT TYPE LABELS
+===================================================== */
+
+.contract-type-name{
+    font-weight: 600;
+    color:#393d45;
+}
+
+.contract-type-description{
+    
+    color: #525866;
+}
+
+
+/* =====================================================
+   MODAL OVERLAY
+===================================================== */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    backdrop-filter: blur(3px);
+
+    z-index: 9999;
+}
+
+.modal-overlay.active{
+    display: flex;
+}
+
+
+/* =====================================================
+   CONTRACT TYPE MODAL
+===================================================== */
+
+.contract-type-modal {
+    width: 430px;
+    max-width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.20);
+}
+
+
+/* =====================================================
+   MODAL HEADER
+===================================================== */
+
+.contract-type-modal-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.contract-type-modal-header h2 {
+    margin: 0;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    color: #16243a;
+}
+
+.contract-type-modal-header p {
+    margin: 5px 0 0;
+
+    font-size: 12px;
+
+    color: #718096;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+.close-modal {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #667085;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+.close-modal:hover {
+    background: #f2f4f7;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #344054;
+}
+
+.form-group input,
+.form-group textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 6px;
+
+    padding: 10px 11px;
+
+    background: #ffffff;
+
+    color: #101828;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 13px;
+}
+
+.form-group input {
+    height: 40px;
+}
+
+.form-group textarea {
+    min-height: 95px;
+
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #52657a;
+
+    box-shadow:
+        0 0 0 3px rgba(82, 101, 122, 0.10);
+}
+
+
+/* =====================================================
+   FORM MESSAGE
+===================================================== */
+
+.form-message {
+    min-height: 18px;
+
+    margin-bottom: 5px;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+.form-message.success {
+    color: #16a34a;
+}
+
+.form-message.error {
+    color: #dc2626;
+}
+
+
+/* =====================================================
+   MODAL ACTIONS
+===================================================== */
+
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid #edf0f4;
+}
+
+
+/* =====================================================
+   CANCEL
+===================================================== */
+
+.cancel-btn {
+
+    padding: 9px 15px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #344054;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+.save-contract-type-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 9px 15px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #16243a;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.save-contract-type-btn:hover {
+    background: #243853;
+}
+
+.save-contract-type-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}

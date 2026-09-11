@@ -1,0 +1,2020 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contracts
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/contract.css') }}">
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/modifications.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="contracts-wrapper">
+
+
+    <!-- =====================================================
+         CONTRACT LIST PAGE
+    ====================================================== -->
+
+    <section
+        id="contractsListPage"
+        class="contracts-page"
+    >
+
+        <!-- HEADER -->
+
+        <div class="contracts-header-card">
+
+            <div class="contracts-header-content">
+
+                <div class="contracts-title-area">
+
+                    <div>
+
+                        <h1 class="page-title-text">
+                            Contracts
+                        </h1>
+
+                        <p class="page-subtitle">
+                            Manage and track your contracts
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="createContractBtn"
+                    class="primary-btn"
+                >
+                    Create Contract
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FILTERS
+        ================================================== -->
+
+        <div class="contract-filter-card">
+
+            <div class="filter-row">
+
+                <!-- SEARCH -->
+
+                <div class="filter-group search-group">
+
+                    <label for="contractSearch">
+                        Search
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contractSearch"
+                        class="filter-input"
+                        placeholder="Search contracts..."
+                    >
+
+                </div>
+
+
+                <!-- CONTRACT TYPE -->
+
+                <div class="filter-group">
+
+                    <label for="contractTypeFilter">
+                        Contract Type
+                    </label>
+
+                    <select
+                        id="contractTypeFilter"
+                        class="filter-input"
+                    >
+
+                        <option value="">
+                            All Contract Types
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="filter-group">
+
+                    <label for="contractStatusFilter">
+                        Status
+                    </label>
+
+                    <select
+                        id="contractStatusFilter"
+                        class="filter-input"
+                    >
+
+                        <option value="">
+                            All Statuses
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CLEAR -->
+
+                <div class="filter-actions">
+
+                    <button
+                        type="button"
+                        id="clearFiltersBtn"
+                        class="secondary-btn"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CONTRACT TABLE
+        ================================================== -->
+
+        <div class="contracts-table-card">
+
+            <div class="table-card-header">
+
+                <div class="table-heading">
+
+                    <div>
+
+                        <h2>
+                            Contract List
+                        </h2>
+
+                        <span class="record-count">
+                            All Contracts
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="contracts-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Contract Name</th>
+
+                            <th>Contract Type</th>
+
+                            <th>Party A</th>
+
+                            <th>Party B</th>
+
+                            <th>Effective Date</th>
+
+                            <th>Expiry Date</th>
+
+                            <th>Status</th>
+
+                            <th class="actions-column">
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="contractsTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="9"
+                                class="loading-row"
+                            >
+                                Loading contracts...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                id="contractsPagination"
+                class="pagination-container"
+            >
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTRACT DETAILS PAGE
+    ====================================================== -->
+
+    <section
+        id="contractDetailsPage"
+        class="contract-details-page"
+        style="display:none;"
+    >
+
+
+        <!-- BACK BUTTON -->
+
+        <button
+            type="button"
+            id="backToContractsBtn"
+            class="back-btn"
+        >
+            Back to Contracts ⬅
+        </button>
+
+
+        <!-- =================================================
+             CONTRACT HEADER
+        ================================================== -->
+
+        <div class="contract-header-card">
+
+            <div class="contract-header-main">
+
+                <div class="contract-heading-content">
+
+                    <div class="contract-title-row">
+
+                        <h1 id="detailsContractName">
+                            Contract Details
+                        </h1>
+
+                        <span
+                            id="detailsContractStatus"
+                            class="status-badge draft"
+                        >
+                            Draft
+                        </span>
+
+                    </div>
+
+
+                    <div class="contract-subtitle">
+
+                        <span>
+
+                            <strong>
+                                Contract:
+                            </strong>
+
+                            <span id="detailsContractId">
+                                -
+                            </span>
+
+                        </span>
+
+
+                        <span>
+
+                            <strong>
+                                Party A:
+                            </strong>
+
+                            <span id="detailsPartyA">
+                                -
+                            </span>
+
+                        </span>
+
+
+                        <span>
+
+                            <strong>
+                                Party B:
+                            </strong>
+
+                            <span id="detailsPartyB">
+                                -
+                            </span>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HEADER ACTIONS -->
+
+                <div class="details-actions">
+
+                    <button
+                        type="button"
+                        id="editContractDetailsBtn"
+                        class="details-action-btn edit"
+                    >
+                        Edit
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="assignUsersBtn"
+                        class="details-action-btn"
+                    >
+                        Assign Users
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CONTRACT INFORMATION
+        ================================================== -->
+
+        <div class="contract-information-card">
+
+            <div class="card-section-title">
+
+                <div class="section-title-left">
+
+                    <h2>
+                        Contract Information
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="contractOverview"
+                class="contract-info-grid"
+            >
+
+                <!-- CONTRACT TYPE -->
+
+                <div class="info-item">
+
+                    <div class="info-content">
+
+                        <span class="info-label">
+                            Contract Type
+                        </span>
+
+                        <strong
+                            id="detailsContractType"
+                            class="info-value"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PARTY A -->
+
+                <div class="info-item">
+
+                    <div class="info-content">
+
+                        <span class="info-label">
+                            Party A
+                        </span>
+
+                        <strong
+                            id="detailsPartyAValue"
+                            class="info-value"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PARTY B -->
+
+                <div class="info-item">
+
+                    <div class="info-content">
+
+                        <span class="info-label">
+                            Party B
+                        </span>
+
+                        <strong
+                            id="detailsPartyBValue"
+                            class="info-value"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EFFECTIVE DATE -->
+
+                <div class="info-item">
+
+                    <div class="info-content">
+
+                        <span class="info-label">
+                            Effective Date
+                        </span>
+
+                        <strong
+                            id="detailsEffectiveDate"
+                            class="info-value"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXPIRY DATE -->
+
+                <div class="info-item">
+
+                    <div class="info-content">
+
+                        <span class="info-label">
+                            Expiry Date
+                        </span>
+
+                        <strong
+                            id="detailsExpiryDate"
+                            class="info-value"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="contract-description-section">
+
+                <span class="info-label">
+                    Description
+                </span>
+
+                <p id="detailsDescription">
+                    No description available.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             DETAILS TABS
+        ====================================================== -->
+
+        <div class="details-tabs">
+
+
+            <!-- OVERVIEW -->
+
+            <button
+                type="button"
+                class="details-tab active"
+                data-tab="overview"
+            >
+                Overview
+            </button>
+
+
+            <!-- CLAUSES -->
+
+            <button
+                type="button"
+                class="details-tab"
+                data-tab="clauses"
+            >
+
+                Clauses
+
+                <!-- <span
+                    id="clausesCount"
+                    class="tab-count"
+                >
+                    0
+                </span> -->
+
+            </button>
+
+
+            <!-- DOCUMENTS -->
+
+            <button
+                type="button"
+                class="details-tab"
+                data-tab="documents"
+            >
+
+                Documents
+
+                <!-- <span
+                    id="documentsCount"
+                    class="tab-count"
+                >
+                    0
+                </span> -->
+
+            </button>
+
+
+            <!-- VERSIONS -->
+
+            <button
+                type="button"
+                class="details-tab"
+                data-tab="versions"
+            >
+
+                Versions
+
+                <!-- <span
+                    id="versionsCount"
+                    class="tab-count"
+                >
+                    0
+                </span> -->
+
+            </button>
+
+
+            <!-- MODIFICATIONS -->
+
+            <button
+                type="button"
+                class="details-tab"
+                data-tab="modifications"
+            >
+
+                Modifications
+
+                <!-- <span
+                    id="modificationsCount"
+                    class="tab-count"
+                >
+                    0
+                </span> -->
+
+            </button>
+
+
+            <!-- APPROVALS -->
+
+            <button
+                type="button"
+                class="details-tab"
+                data-tab="approvals"
+            >
+
+                Approvals
+
+                <span
+                    id="approvalsCount"
+                    class="tab-count"
+                >
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================================
+             TAB CONTENT
+        ====================================================== -->
+
+        <div class="details-tab-container">
+
+
+            <!-- =================================================
+                 OVERVIEW TAB
+            ================================================== -->
+
+            <div
+                id="overviewTab"
+                class="details-tab-content active"
+            >
+
+                <div class="overview-card">
+
+                    <div class="overview-card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                Contract Overview
+                            </span>
+
+                            <h3 class="overview-title">
+                                Contract Summary
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <p
+                        id="overviewDetails"
+                        class="overview-description"
+                    >
+                    </p>
+
+                </div>
+
+
+                <!-- OVERVIEW STATS -->
+
+                <div class="overview-stats">
+
+
+                    <!-- STATUS -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-top">
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Status
+                                </span>
+
+                                <span class="stat-small-text">
+                                    Current status
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <strong
+                            id="overviewStatus"
+                            class="stat-value"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <!-- DOCUMENTS -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-top">
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Documents
+                                </span>
+
+                                <span class="stat-small-text">
+                                    Uploaded files
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <strong
+                            id="overviewDocuments"
+                            class="stat-value"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <!-- CLAUSES -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-top">
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Clauses
+                                </span>
+
+                                <span class="stat-small-text">
+                                    Contract clauses
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <strong
+                            id="overviewClauses"
+                            class="stat-value"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXPIRATION -->
+
+                <div class="expiration-card">
+
+                    <div class="expiration-top">
+
+                        <div>
+
+                            <span class="expiration-label">
+                                Contract Expiration
+                            </span>
+
+                            <strong
+                                id="expirationDate"
+                                class="expiration-date"
+                            >
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <span
+                            id="remainingDays"
+                            class="days-remaining"
+                        >
+                            -
+                        </span>
+
+                    </div>
+
+
+                    <div class="expiration-progress">
+
+                        <div
+                            id="expirationProgress"
+                            class="expiration-progress-bar"
+                        >
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CLAUSES TAB
+            ================================================== -->
+
+            <div
+                id="clausesTab"
+                class="details-tab-content"
+            >
+
+                <div class="tab-content-header">
+
+                    <div>
+
+                        <h3>
+                            Contract Clauses
+                        </h3>
+
+                        <p>
+                            View and manage clauses associated with this contract.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="addClauseBtn"
+                        class="primary-small-btn"
+                    >
+
+                        <i class="fas fa-plus"></i>
+
+                        Add Clause
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="contractClausesContainer"
+                    class="content-list"
+                >
+
+                    <div class="loading-state">
+                        Loading clauses...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DOCUMENTS TAB
+            ================================================== -->
+
+            <div
+                id="documentsTab"
+                class="details-tab-content"
+            >
+
+                <div class="tab-content-header">
+
+                    <div>
+
+                        <h3>
+                            Contract Documents
+                        </h3>
+
+                        <p>
+                            View and manage documents related to this contract.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="uploadDocumentBtn"
+                        class="primary-small-btn"
+                    >
+
+                        <i class="fas fa-upload"></i>
+
+                        Upload Document
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="contractDocumentsContainer"
+                    class="content-list"
+                >
+
+                    <div class="loading-state">
+                        Loading documents...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 VERSIONS TAB
+            ================================================== -->
+
+            <div
+                id="versionsTab"
+                class="details-tab-content"
+            >
+
+                <div class="tab-content-header">
+
+                    <div>
+
+                        <h3>
+                            Contract Versions
+                        </h3>
+
+                        <p>
+                            View the version history of this contract.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="contractVersionsContainer"
+                    class="content-list"
+                >
+
+                    <div class="loading-state">
+                        Loading versions...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 MODIFICATIONS TAB
+            ===================================================== -->
+
+            <div
+                id="modificationsTab"
+                class="details-tab-content"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>
+                            Modification Requests
+                        </h3>
+
+                        <p class="section-subtitle">
+                            Review and manage contract modification requests.
+                        </p>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         LEGAL USER ONLY
+                         JS controls visibility
+                    ========================================== -->
+
+                    <button
+                        type="button"
+                        id="createModificationBtn"
+                        class="btn btn-primary"
+                        style="display: none;"
+                        onclick="openModificationModal()"
+                    >
+
+                        <i class="bi bi-plus-lg"></i>
+
+                        Request Modification
+
+                    </button>
+
+                </div>
+
+
+                <!-- MODIFICATION TABLE -->
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Type
+                                </th>
+
+                                <th>
+                                    Clause
+                                </th>
+
+                                <th>
+                                    Reason
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Requested By
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="modificationsTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="8"
+                                    class="text-center"
+                                >
+                                    Loading modifications...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 APPROVALS TAB
+            ================================================== -->
+
+            <div
+                id="approvalsTab"
+                class="details-tab-content"
+            >
+
+                <div class="tab-content-header">
+
+                    <div>
+
+                        <h3>
+                            Approval History
+                        </h3>
+
+                        <p>
+                            Track contract approval activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="contractApprovalsContainer"
+                    class="content-list"
+                >
+
+                    <div class="empty-state">
+                        No approval records found.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================================================
+     CREATE / EDIT CONTRACT MODAL
+========================================================= -->
+
+<div
+    id="contractModal"
+    class="modal-overlay"
+>
+
+    <div class="form-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    Contract Management
+                </span>
+
+                <h2 id="contractModalTitle">
+                    Create Contract
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="close-btn"
+                data-close-modal="contractModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form
+            id="contractForm"
+            class="contract-form"
+        >
+
+            <input
+                type="hidden"
+                id="contractId"
+                name="contractId"
+            >
+
+
+            <!-- CONTRACT NAME -->
+
+            <div class="form-group">
+
+                <label for="contractName">
+
+                    Contract Name
+                    <span>*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="contractName"
+                    name="contractName"
+                    placeholder="Enter contract name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TYPE + PARTY A -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="contractType">
+
+                        Contract Type
+                        <span>*</span>
+
+                    </label>
+
+
+                    <select
+                        id="contractType"
+                        name="contractType"
+                        required
+                    >
+
+                        <option value="">
+                            Select Contract Type
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="partyA">
+
+                        Party A
+                        <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="partyA"
+                        name="partyA"
+                        placeholder="Enter Party A"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- PARTY B -->
+
+            <div class="form-group">
+
+                <label for="partyB">
+
+                    Party B
+                    <span>*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="partyB"
+                    name="partyB"
+                    placeholder="Enter Party B"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DATES -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="effectiveDate">
+
+                        Effective Date
+                        <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="effectiveDate"
+                        name="effectiveDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expiryDate">
+
+                        Expiry Date
+                        <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="expiryDate"
+                        name="expiryDate"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="contractDescription">
+                    Description
+                </label>
+
+
+                <textarea
+                    id="contractDescription"
+                    name="contractDescription"
+                    rows="4"
+                    placeholder="Enter contract description"
+                ></textarea>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="modal-secondary-btn"
+                    data-close-modal="contractModal"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="modal-primary-btn"
+                >
+
+                    <i class="fas fa-save"></i>
+
+                    Save Contract
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     UPLOAD DOCUMENT MODAL
+========================================================= -->
+
+<div
+    id="uploadDocumentModal"
+    class="modal-overlay"
+>
+
+    <div class="form-modal document-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    Contract Document
+                </span>
+
+                <h2>
+                    Upload Document
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="close-btn"
+                data-close-modal="uploadDocumentModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form
+            id="uploadDocumentForm"
+            class="contract-form"
+        >
+
+            <input
+                type="hidden"
+                id="uploadContractId"
+            >
+
+
+            <!-- DOCUMENT NAME -->
+
+            <div class="form-group">
+
+                <label for="documentName">
+
+                    Document Name
+                    <span>*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="documentName"
+                    required
+                    placeholder="Enter document name"
+                >
+
+            </div>
+
+
+            <!-- FILE -->
+
+            <div class="form-group">
+
+                <label for="documentFile">
+
+                    Select File
+                    <span>*</span>
+
+                </label>
+
+
+                <div class="file-input-wrapper">
+
+                    <input
+                        type="file"
+                        id="documentFile"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="modal-secondary-btn"
+                    data-close-modal="uploadDocumentModal"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="modal-primary-btn"
+                >
+
+                    <i class="fas fa-upload"></i>
+
+                    Upload
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CLAUSE MODAL
+========================================================= -->
+
+<div
+    id="clauseModal"
+    class="modal-overlay"
+>
+
+    <div class="form-modal clause-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    Contract Clause
+                </span>
+
+                <h2 id="clauseModalTitle">
+                    Add Clause
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="close-btn"
+                data-close-modal="clauseModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form
+            id="clauseForm"
+            class="contract-form"
+        >
+
+            <input
+                type="hidden"
+                id="clauseId"
+            >
+
+            <input
+                type="hidden"
+                id="clauseContractId"
+            >
+
+            <input
+                type="hidden"
+                id="clauseVersionId"
+            >
+
+
+            <!-- NUMBER + TITLE -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="clauseNumber">
+
+                        Clause Number
+                        <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="clauseNumber"
+                        required
+                        min="1"
+                        placeholder="Enter clause number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="clauseTitle">
+
+                        Clause Title
+                        <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="clauseTitle"
+                        maxlength="200"
+                        required
+                        placeholder="Enter clause title"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- CLAUSE TEXT -->
+
+            <div class="form-group">
+
+                <label for="clauseText">
+
+                    Clause Text
+                    <span>*</span>
+
+                </label>
+
+
+                <textarea
+                    id="clauseText"
+                    rows="7"
+                    required
+                    placeholder="Enter clause content"
+                ></textarea>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="modal-secondary-btn"
+                    data-close-modal="clauseModal"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="modal-primary-btn"
+                >
+
+                    <i class="fas fa-save"></i>
+
+                    Save Clause
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODIFICATION REQUEST MODAL
+===================================================== -->
+
+<div
+    id="modificationModal"
+    class="modal-overlay"
+    style="display: none;"
+    aria-hidden="true"
+>
+
+    <div class="modal-box">
+
+
+        <!-- HEADER -->
+
+        <div class="modal-header">
+
+            <h2>
+                Request Modification
+            </h2>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="closeModificationModal()"
+            >
+                &times;
+            </button>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form id="modificationForm">
+
+
+            <!-- CONTRACT ID -->
+
+            <input
+                type="hidden"
+                id="modificationContractId"
+            >
+
+
+            <!-- VERSION ID -->
+
+            <input
+                type="hidden"
+                id="modificationVersionId"
+            >
+
+
+            <!-- MODIFICATION TYPE -->
+
+            <div class="form-group">
+
+                <label for="modificationType">
+                    Modification Type
+                </label>
+
+
+                <select
+                    id="modificationType"
+                    required
+                    onchange="handleModificationTypeChange()"
+                >
+
+                    <option value="">
+                        Select Type
+                    </option>
+
+                    <option value="Clause">
+                        Clause
+                    </option>
+
+                    <option value="Contract">
+                        Whole Contract
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CLAUSE -->
+
+            <div
+                class="form-group"
+                id="modificationClauseGroup"
+                style="display: none;"
+            >
+
+                <label for="modificationClause">
+                    Select Clause
+                </label>
+
+
+                <select
+                    id="modificationClause"
+                >
+
+                    <option value="">
+                        Select Clause
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ORIGINAL VALUE -->
+
+            <div class="form-group">
+
+                <label for="modificationOldText">
+                    Original Value
+                </label>
+
+
+                <textarea
+                    id="modificationOldText"
+                    rows="5"
+                    required
+                    readonly
+                ></textarea>
+
+            </div>
+
+
+            <!-- PROPOSED MODIFICATION -->
+
+            <div class="form-group">
+
+                <label for="modificationNewText">
+                    Proposed Modification
+                </label>
+
+
+                <textarea
+                    id="modificationNewText"
+                    rows="5"
+                    required
+                    placeholder="Enter proposed modification..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- REASON -->
+
+            <div class="form-group">
+
+                <label for="modificationReason">
+                    Reason / Description
+                </label>
+
+
+                <textarea
+                    id="modificationReason"
+                    rows="4"
+                    maxlength="2000"
+                    placeholder="Explain why this modification is required..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="modal-secondary-btn"
+                    onclick="closeModificationModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="modal-primary-btn"
+                >
+                    Submit Request
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ASSIGN USERS MODAL
+========================================================= -->
+
+<div
+    id="assignUsersModal"
+    class="modal-overlay"
+>
+
+    <div class="form-modal">
+
+
+        <!-- HEADER -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    Contract Access
+                </span>
+
+                <h2>
+                    Assign Legal Users
+                </h2>
+
+
+                <p
+                    id="assignUsersContractName"
+                    style="margin:5px 0 0;color:#6b7280;font-size:13px;"
+                >
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="close-btn"
+                data-close-modal="assignUsersModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- ASSIGN USERS -->
+
+        <div class="contract-form">
+
+
+            <!-- SEARCH -->
+
+            <div class="form-group">
+
+                <label for="assignUserSearch">
+                    Search Legal Users
+                </label>
+
+
+                <input
+                    type="text"
+                    id="assignUserSearch"
+                    placeholder="Search by name or email..."
+                >
+
+            </div>
+
+
+            <!-- USERS -->
+
+            <div
+                id="assignUsersContainer"
+                style="max-height:350px;overflow-y:auto;"
+            >
+
+                <div class="empty-state">
+                    Search for a Legal User by name or email.
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="modal-secondary-btn"
+                    data-close-modal="assignUsersModal"
+                >
+                    Close
+                </button>
+
+
+                <button
+                    type="button"
+                    id="saveAssignedUsersBtn"
+                    class="modal-primary-btn"
+                >
+
+                    <i class="fas fa-user-check"></i>
+
+                    Assign Selected
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+{% block extra_js %}
+
+<script src="{{ url_for('static', filename='js/contracts.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/versions.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/clauses.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/modifications.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+
+{% block title %}
+Users | Legal Contract Management System
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/users.css') }}">
+
+{% endblock %}
+
+
+<!--== PAGE HEADING== -->
+
+{% block page_heading %}
+
+<div>
+    <h1>Users</h1>
+
+    <p > Manage system user </p>
+</div>
+
+{% endblock %}
+
+
+<!-- ==PAGE CONTENT== -->
+
+{% block content %}
+
+<section class="users-page">
+
+    <!-- ==PAGE HEADER==-->
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Users</h2>
+
+            <p>
+                View and manage users available in the system.
+            </p>
+
+        </div>
+
+
+        <!-- CREATE USER BUTTON -->
+
+        <button   type="button"   class="btn-primary"   id="createUserBtn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Create User
+
+        </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+   <div class="filter-bar">
+        <div class="user-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchUser"
+                placeholder="Search users...">
+
+        </div>
+
+        <select id="filterUserRole">
+    <option value="">All Roles</option>
+</select>
+
+   </div>
+
+   
+
+    <!-- ==MESSAGE== -->
+
+    <div  id="userMessage"  class="user-message"> </div>
+
+
+    <!-- == TABLE CARD==-->
+
+    <div class="table-card">
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th> ID</th>
+
+                    <th> Name </th>
+
+                    <th> Email</th>
+
+                    <th> Phone </th>
+
+                    <th> Role</th>
+
+                    <th> Status</th>
+
+                    <th> Actions</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="usersTableBody">
+
+                <tr>
+
+                    <td colspan="7" class="empty-row">
+
+                        Loading users...
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==CREATE / EDIT USER MODAL==-->
+
+<div class="modal-overlay"  id="userModal">
+
+
+    <div class="user-modal">
+
+        <!-- MODAL HEADER-->
+
+        <div class="user-modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Create User
+                </h2>
+
+                <p id="modalSubtitle">
+                    Add a new user to the system.
+                </p>
+
+            </div>
+
+
+            <button    type="button" class="close-modal" id="closeUserModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <!-- ==USER FORM==-->
+
+        <form id="userForm">
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label for="userName"> Name </label>
+
+                <input type="text" id="userName" name="Name" placeholder="Enter user name" required>
+
+            </div>
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="userEmail">  Email</label>
+
+                <input  type="email" id="userEmail" name="Email" placeholder="Enter email address" required>
+
+            </div>
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="userPassword"> Password </label>
+
+                <div class="password-wrapper">
+
+                    <input type="password" id="userPassword" name="Password" placeholder="Enter password">
+
+                    <button type="button" class="password-toggle" id="passwordToggle">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+                <small id="passwordHint">
+                    Password is required when creating a user.
+                </small>
+
+            </div>
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="userPhone"> Phone Number </label>
+
+                <input  type="text"  id="userPhone"  name="Phone_No"  placeholder="Enter phone number">
+
+            </div>
+
+            <!-- ROLE -->
+
+            <div class="form-group">
+
+                <label for="userRole">  Role</label>
+
+                <select id="userRole" name="Role_ID" required>
+
+                    <option value="">
+                        Select role
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- STATUS -->
+
+            <div class="form-group">
+
+                <label for="userStatus">
+                    Status
+                </label>
+
+                <select id="userStatus" name="Status">
+
+                    <option value="Active">
+                        Active
+                    </option>
+
+                    <option value="Inactive">
+                        Inactive
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- FORM MESSAGE -->
+
+            <div   id="formMessage" class="form-message"></div>
+
+
+            <!-- MODAL ACTIONS -->
+
+            <div class="modal-actions">
+
+                <button type="button" class="cancel-btn" id="cancelUser">
+                     Cancel
+
+                </button>
+
+                <button  type="submit" class="save-user-btn" id="saveUserBtn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Create User
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+<!-- ====================== PAGE JAVASCRIPT============================ -->
+
+{% block extra_js %}
+
+<script  src="{{ url_for('static', filename='js/users.js') }}"></script>
+
+{% endblock %}
